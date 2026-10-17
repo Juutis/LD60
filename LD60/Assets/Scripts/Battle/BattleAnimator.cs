@@ -15,6 +15,8 @@ public class BattleAnimator : MonoBehaviour
 
     public bool TriggerDebug;
 
+    private string currentState;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,7 +35,11 @@ public class BattleAnimator : MonoBehaviour
 
     public void PlayState(string stateName)
     {
-        anim.Play(stateName);
+        if (stateName != currentState)
+        {
+            anim.Play(stateName);
+            currentState = stateName;
+        }
     }
 
     public void applyDamageCallback()
