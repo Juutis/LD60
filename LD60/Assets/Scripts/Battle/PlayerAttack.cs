@@ -25,11 +25,14 @@ public class PlayerAttack : MonoBehaviour
 
     private List<AttackType> inputBuffer = new();
 
+    private BattleAnimator battleAnim;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         movement = GetComponent<PlayerMovement>();
         attackAction = InputSystem.actions.FindAction("attack");
+        battleAnim = GetComponentInChildren<BattleAnimator>();
     }
 
     // Update is called once per frame
@@ -85,6 +88,7 @@ public class PlayerAttack : MonoBehaviour
                 currentAttack = nextAttack;
                 actionStarted = Time.time;
                 movement.BlockMoving(true);
+                battleAnim.PlayState(currentAttack.AnimState);
             }
             else
             {
@@ -132,6 +136,7 @@ public class Attack
     public float cooldown;
     public List<AttackType> comboPattern;
     public bool isInitial;
+    public string AnimState;
 }
 
 public enum AttackType
