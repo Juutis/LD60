@@ -48,12 +48,10 @@ public class PlayerAttack : MonoBehaviour
             {
                 currentAttack = null;
                 actionEnded = Time.time;
-                Debug.Log($"CD over {Time.time}");
             }
             else if (Time.time - actionStarted > currentAttack.attackTime)
             {
                 // attack
-                Debug.Log($"Attack! {Time.time} {currentAttack.name}");
             }
         }
 
@@ -61,7 +59,6 @@ public class PlayerAttack : MonoBehaviour
         {
             if (Time.time - actionEnded > comboTimer)
             {
-                Debug.Log($"Combo reset");
                 currentCombo = new();
             }
 
@@ -85,7 +82,6 @@ public class PlayerAttack : MonoBehaviour
                     currentCombo = new();
                 }
 
-                Debug.Log($"Attack started {Time.time}");
                 currentAttack = nextAttack;
                 actionStarted = Time.time;
                 movement.BlockMoving(true);
