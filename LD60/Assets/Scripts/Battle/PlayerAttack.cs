@@ -110,6 +110,16 @@ public class PlayerAttack : MonoBehaviour
 
         return true;
     }
+
+    public void AttackHit()
+    {
+
+    }
+
+    public void AttackOver()
+    {
+
+    }
 }
 
 [Serializable]
