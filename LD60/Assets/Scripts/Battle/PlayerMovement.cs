@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     private float rotateSpeed;
     [SerializeField]
     private float moveSpeed;
+    [SerializeField]
+    private GameObject playerModel;
 
     private Rigidbody rb;
     private InputAction moveAction;
@@ -33,20 +35,16 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector2 move = moveAction.ReadValue<Vector2>();
-        if (Mathf.Abs(move.y) > 0.1f)
+        if (move.sqrMagnitude > 0.1f)
         {
-            rb.linearVelocity = transform.forward * move.y * moveSpeed;
+            rb.linearVelocity = new Vector3(move.x, 0f, move.y) * moveSpeed;
+            rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(new(move.x, 0f, move.y), transform.up), rotateSpeed);
             battleAnim.PlayState("Run");
         }
         else
         {
             rb.linearVelocity = Vector3.zero;
             battleAnim.PlayState("Idle");
-        }
-
-        if (Mathf.Abs(move.x) > 0.1f)
-        {
-            rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation((move.x)*transform.right, transform.up), rotateSpeed);
         }
     }
 
