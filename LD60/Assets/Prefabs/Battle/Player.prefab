@@ -67,33 +67,33 @@ MonoBehaviour:
   attacks:
   - name: Normal
     type: 0
-    attackTime: 0.5
+    attackTime: 0.2
     damage: 1
-    cooldown: 0.5
+    cooldown: 0.2
     comboPattern: 
     isInitial: 1
     AnimState: Attack1
   - name: Normal2
     type: 0
-    attackTime: 0.5
+    attackTime: 0.2
     damage: 1.5
-    cooldown: 0.5
+    cooldown: 0.2
     comboPattern: 0000000000000000i
     isInitial: 0
     AnimState: Attack2
   - name: Normal3
     type: 0
-    attackTime: 0.5
+    attackTime: 0.2
     damage: 2
-    cooldown: 0.5
+    cooldown: 0.2
     comboPattern: 000000000000000000000000i
     isInitial: 0
     AnimState: Attack3
   - name: Normal4
     type: 0
-    attackTime: 0.5
+    attackTime: 0.2
     damage: 2
-    cooldown: 0.5
+    cooldown: 0.2
     comboPattern: 00000000000000000000000000000000i
     isInitial: 0
     AnimState: Attack4
