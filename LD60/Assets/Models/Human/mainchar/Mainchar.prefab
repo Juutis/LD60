@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 377bbb3a3527c1a48a41edfb113d1071, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 377bbb3a3527c1a48a41edfb113d1071, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 377bbb3a3527c1a48a41edfb113d1071, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 377bbb3a3527c1a48a41edfb113d1071, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.04813
       objectReference: {fileID: 0}
@@ -48,6 +60,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 377bbb3a3527c1a48a41edfb113d1071, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 569330890716223473, guid: 377bbb3a3527c1a48a41edfb113d1071, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -75,6 +91,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 377bbb3a3527c1a48a41edfb113d1071, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1823137878217056827}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 377bbb3a3527c1a48a41edfb113d1071, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6801240398472940517}
   m_SourcePrefab: {fileID: 100100000, guid: 377bbb3a3527c1a48a41edfb113d1071, type: 3}
 --- !u!1 &6291430674773659797 stripped
 GameObject:
@@ -103,3 +122,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6801240398472940517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6291430674773659797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70b27d0024e11ef47a627e77d531343f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BattleAnimator
