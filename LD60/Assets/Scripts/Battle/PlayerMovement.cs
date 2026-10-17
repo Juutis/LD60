@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
     [SerializeField]
-    private GameObject playerModel;
+    private Transform playerModel;
 
     private Rigidbody rb;
     private InputAction moveAction;
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         if (move.sqrMagnitude > 0.1f)
         {
             rb.linearVelocity = new Vector3(move.x, 0f, move.y) * moveSpeed;
-            rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(new(move.x, 0f, move.y), transform.up), rotateSpeed);
+            playerModel.rotation = Quaternion.RotateTowards(playerModel.rotation, Quaternion.LookRotation(new(move.x, 0f, move.y), transform.up), rotateSpeed);
         }
         else
         {
