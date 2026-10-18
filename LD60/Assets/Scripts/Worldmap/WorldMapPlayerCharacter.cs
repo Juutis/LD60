@@ -13,14 +13,19 @@ public class WorldMapPlayerCharacter : MonoBehaviour
     [SerializeField]
     private ScrollingWorldMap scrollingWorldMap;
 
+    private Vector2 previousPosition;
+
     private Vector2 moveValue;
 
     [SerializeField]
     private bool moveEnabled = false;
 
+    private float movedDistance = 0f;
+    public float MovedDistance { get { return movedDistance; } }
+
     void Start()
     {
-        
+        previousPosition = transform.position;
     }
 
     void Update()
@@ -43,6 +48,11 @@ public class WorldMapPlayerCharacter : MonoBehaviour
         // move map, if map is not moved move player slightly faster
         Vector2 mapMovement = scrollingWorldMap.MoveMap(moveValue);
         Vector2 moveAmount = moveValue + (mapMovement * mapNotMovingFactor);
-        rigidbody2D.linearVelocity = moveAmount * speed * Time.deltaTime;
+        Vector2 vel = moveAmount * speed * Time.deltaTime;
+
+        rigidbody2D.linearVelocity = vel;
+
+        movedDistance += Vector2.Distance(transform.position, previousPosition);
+        previousPosition = transform.position;
     }
 }
