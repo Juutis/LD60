@@ -66,6 +66,7 @@ public class BattleAnimator : MonoBehaviour
         if (!isDead)
         {
             anim.Play("Hurt", 0, 0);
+            currentState = "Hurt";
             lockAnimation = true;
         }
     }
@@ -92,6 +93,7 @@ public class BattleAnimator : MonoBehaviour
         if (!isDead)
         {
             lockAnimation = false;
+            attackFinishedEvent.Invoke();
         }
     }
 }
