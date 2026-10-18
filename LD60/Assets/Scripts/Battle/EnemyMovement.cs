@@ -94,13 +94,32 @@ public class EnemyMovement : MonoBehaviour
         }
         else if(state == EnemyState.Attacking)
         {
+            Debug.Log("Attacking");
+            bool aboveAttackingRange = (player.transform.position - transform.position).sqrMagnitude >= attackRangeSqr;
 
+            if (aboveAttackingRange)
+            {
+                rb.linearVelocity = transform.forward * moveSpeed;
+            }
+
+            Vector3 lookDir = zeroY(player.transform.position) - zeroY(transform.position);
+            rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(lookDir, transform.up), rotateSpeed);
         }
     }
 
     private Vector3 zeroY(Vector3 pos)
     {
         return new Vector3(pos.x, 0, pos.z);
+    }
+
+    public void GoAttackMode()
+    {
+        state = EnemyState.Attacking;
+    }
+
+    public void GoAggroMode()
+    {
+        state = EnemyState.Aggro;
     }
 }
 
