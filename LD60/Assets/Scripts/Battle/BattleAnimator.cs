@@ -17,6 +17,7 @@ public class BattleAnimator : MonoBehaviour
 
     private string currentState;
     private bool lockAnimation = false;
+    public bool isDead = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,11 +33,15 @@ public class BattleAnimator : MonoBehaviour
             PlayState(DebugState);
             TriggerDebug = false;
         }
+        if (isDead)
+        {
+            anim.Play("Die");
+        }
     }
 
     public void PlayState(string stateName, bool isAttackState = false)
     {
-        if (lockAnimation)
+        if (lockAnimation || isDead)
         {
             return;
         }
@@ -49,6 +54,11 @@ public class BattleAnimator : MonoBehaviour
                 lockAnimation = true;
             }
         }
+    }
+
+    public void Die()
+    {
+        isDead = true;
     }
 
     public void applyDamageCallback()
