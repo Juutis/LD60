@@ -2540,7 +2540,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 307530667654413817, guid: a53b89736116ca84ca76c1230347d778, type: 3}
       propertyPath: m_Name
-      value: Particle System
+      value: body_lower
       objectReference: {fileID: 0}
     - target: {fileID: 6291430674773659797, guid: a53b89736116ca84ca76c1230347d778, type: 3}
       propertyPath: m_Name

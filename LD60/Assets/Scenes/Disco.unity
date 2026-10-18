@@ -2014,6 +2014,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7015815896316946899, guid: 79efdc4b4a05dec4a855f6c0ce4873f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.403841
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015815896316946899, guid: 79efdc4b4a05dec4a855f6c0ce4873f4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.7948675
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015815896316946899, guid: 79efdc4b4a05dec4a855f6c0ce4873f4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00000032171062
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888479184096202206, guid: 79efdc4b4a05dec4a855f6c0ce4873f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9202937162913969756, guid: 79efdc4b4a05dec4a855f6c0ce4873f4, type: 3}
       propertyPath: m_Name
       value: FightSceneEssentials
