@@ -40,6 +40,11 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            enemyMovement.GoAttackMode();
+        }
+
         currentHP -= damage;
         testEffect.Play();
     }

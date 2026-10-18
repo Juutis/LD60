@@ -202,9 +202,12 @@ public class EnemyMovement : MonoBehaviour
 
     public void GoAttackMode()
     {
-        state = EnemyState.Attacking;
-        lastHit = Time.time;
-        currentAttackDelay = GetAttackDelay();
+        if (state != EnemyState.Attacking)
+        {
+            state = EnemyState.Attacking;
+            lastHit = Time.time;
+            currentAttackDelay = GetAttackDelay();
+        }
     }
 
     public void GoAggroMode()
