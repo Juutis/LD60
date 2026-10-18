@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2824381004245971899}
   - component: {fileID: 4853871087107501876}
-  m_Layer: 0
+  - component: {fileID: 2450569249781325047}
+  m_Layer: 8
   m_Name: Powerup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +55,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &2450569249781325047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4120625150921088515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba1e2d0dcc47d0459d4d4123f83854a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickUp
 --- !u!1001 &7397649597432422605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -118,13 +131,25 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 99b6efe0565d5cf4691d033420d1df5a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: -4683669308469848369, guid: 99b6efe0565d5cf4691d033420d1df5a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 96a1cb7e04785b749882f430d17af3e1, type: 2}
+    - target: {fileID: -1018664272722485354, guid: 99b6efe0565d5cf4691d033420d1df5a, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 99b6efe0565d5cf4691d033420d1df5a, type: 3}
       propertyPath: m_Name
       value: powerup
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 99b6efe0565d5cf4691d033420d1df5a, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6317578925029434746, guid: 99b6efe0565d5cf4691d033420d1df5a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
