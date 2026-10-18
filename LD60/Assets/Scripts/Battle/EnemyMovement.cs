@@ -19,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
 
     private EnemyState state = EnemyState.Roaming;
     private Vector3 roamingTarget;
+    private Vector3 roamingLookDir;
     private PlayerMovement player;
     private float aggroRangeSqr;
     private float waitingRangeSqr;
@@ -44,7 +45,8 @@ public class EnemyMovement : MonoBehaviour
         if (!alive)
         {
             rb.linearVelocity = Vector3.zero;
-            agent.destination = transform.position;
+            agent.enabled = false;
+            GetComponent<CapsuleCollider>().enabled = false;
             return;
         }
         if (state == EnemyState.Roaming)
@@ -54,13 +56,21 @@ public class EnemyMovement : MonoBehaviour
                 Vector2 t2 = Random.onUnitCircle * 4f;
                 roamingTarget = transform.position + new Vector3(t2.x, 0f, t2.y);
                 NavMesh.SamplePosition(roamingTarget, out NavMeshHit navHit, 3f, NavMesh.AllAreas);
+                roamingLookDir = zeroY(roamingTarget) - zeroY(transform.position);
                 roamingTarget = navHit.position;
                 agent.SetDestination(navHit.position);
                 Debug.Log(navHit.position);
             }
 
+            Vector3 newLookDir = zeroY(roamingTarget) - zeroY(transform.position);
+
+            if (newLookDir != Vector3.zero)
+            {
+                roamingLookDir = newLookDir;
+            }
+
             // rb.linearVelocity = transform.forward * moveSpeed;
-            rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(zeroY(roamingTarget) - zeroY(transform.position), transform.up), rotateSpeed);
+            rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(roamingLookDir, transform.up), rotateSpeed);
 
             if ((player.transform.position - transform.position).sqrMagnitude <= aggroRangeSqr)
             {
@@ -87,7 +97,6 @@ public class EnemyMovement : MonoBehaviour
             Vector3 lookDir = (zeroY(player.transform.position - transform.position)).normalized;
 
             NavMesh.SamplePosition(zeroY(player.transform.position - lookDir * waitingRange), out NavMeshHit navHit, 3f, NavMesh.AllAreas);
-            Debug.Log($"W {zeroY(player.transform.position - lookDir * waitingRange)} -- {navHit.position}");
             // DrawDebug(zeroY(player.transform.position - lookDir * waitingRange));
             if (navHit.position != Vector3.negativeInfinity || navHit.position != Vector3.positiveInfinity)
             {
@@ -119,15 +128,15 @@ public class EnemyMovement : MonoBehaviour
         }
         else if(state == EnemyState.Attacking)
         {
-            bool aboveAttackingRange = (player.transform.position - transform.position).sqrMagnitude >= attackRangeSqr;
+            bool aboveAttackingRange = (player.transform.position - transform.position).sqrMagnitude > attackRangeSqr;
 
+            Vector3 lookDir = (zeroY(player.transform.position - transform.position)).normalized;
+            rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(lookDir, transform.up), rotateSpeed);
             if (aboveAttackingRange)
             {
-                rb.linearVelocity = transform.forward * moveSpeed;
+                NavMesh.SamplePosition(zeroY(player.transform.position - lookDir * attackRange), out NavMeshHit navHit, 3f, NavMesh.AllAreas);
+                agent.SetDestination(navHit.position);
             }
-
-            Vector3 lookDir = zeroY(player.transform.position) - zeroY(transform.position);
-            rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(lookDir, transform.up), rotateSpeed);
         }
     }
 

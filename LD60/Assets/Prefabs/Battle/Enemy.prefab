@@ -2366,7 +2366,7 @@ MonoBehaviour:
   moveSpeed: 1
   aggroRange: 6
   waitingRange: 4
-  attackRange: 2
+  attackRange: 1
 --- !u!136 &6897210146274308972
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2415,7 +2415,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!195 &8677457410671152663
 NavMeshAgent:
