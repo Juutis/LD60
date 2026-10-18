@@ -38,7 +38,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (attackAction.WasPressedThisFrame())
+        if (attackAction.WasPressedThisFrame() && inputBuffer.Count <= 3)
         {
             inputBuffer.Add(AttackType.normal);
         }

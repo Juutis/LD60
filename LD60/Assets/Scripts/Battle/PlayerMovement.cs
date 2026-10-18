@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private Camera cam;
     private Vector3 camDir;
     private int pickupLayer;
+    private bool isDead = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         var forward = cam.transform.forward;
         forward.y = 0.0f;
         forward.Normalize();
@@ -87,5 +93,10 @@ public class PlayerMovement : MonoBehaviour
                 car.TriggerPlayerNearby();
             }
         }
+    }
+
+    public void Die()
+    {
+        isDead = true;
     }
 }
