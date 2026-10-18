@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119710359046762701}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22283372, y: -0.6710776, z: 0.2228337, w: 0.6710776}
+  m_LocalRotation: {x: 0.22286494, y: -0.67106724, z: 0.22286494, w: 0.67106724}
   m_LocalPosition: {x: 5.4039745, y: 4.794688, z: 0.00000016105042}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -180,8 +180,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8472736278234260190}
   - component: {fileID: 3523641551626784045}
-  - component: {fileID: 2623995220737387137}
   - component: {fileID: 4195821332234040139}
+  - component: {fileID: 2623995220737387137}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -197,8 +197,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5137340719152819582}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22286493, y: -0.67106724, z: 0.22286494, w: 0.6710673}
-  m_LocalPosition: {x: 5.4039755, y: 4.7946887, z: 0.00000013440658}
+  m_LocalRotation: {x: 0.22288994, y: -0.67105895, z: 0.22288997, w: 0.6710589}
+  m_LocalPosition: {x: 5.403841, y: 4.7948675, z: 0.0000003223802}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -247,35 +247,6 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
---- !u!114 &2623995220737387137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5137340719152819582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotationComposer
-  Composition:
-    ScreenPosition: {x: 0, y: 0}
-    DeadZone:
-      Enabled: 1
-      Size: {x: 0.1, y: 0.15}
-    HardLimits:
-      Enabled: 0
-      Size: {x: 0.8, y: 0.8}
-      Offset: {x: 0, y: 0}
-  CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0.76, z: 0}
-  Damping: {x: 2, y: 2}
-  Lookahead:
-    Enabled: 0
-    Time: 0
-    Smoothing: 0
-    IgnoreY: 0
 --- !u!114 &4195821332234040139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +273,35 @@ MonoBehaviour:
   CenterOnActivate: 1
   TargetOffset: {x: 3, y: 3, z: 0}
   Damping: {x: 10, y: 10, z: 10}
+  Lookahead:
+    Enabled: 0
+    Time: 0
+    Smoothing: 0
+    IgnoreY: 0
+--- !u!114 &2623995220737387137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5137340719152819582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotationComposer
+  Composition:
+    ScreenPosition: {x: 0, y: 0}
+    DeadZone:
+      Enabled: 1
+      Size: {x: 0.1, y: 0.15}
+    HardLimits:
+      Enabled: 0
+      Size: {x: 0.8, y: 0.8}
+      Offset: {x: 0, y: 0}
+  CenterOnActivate: 1
+  TargetOffset: {x: 0, y: 0.76, z: 0}
+  Damping: {x: 2, y: 2}
   Lookahead:
     Enabled: 0
     Time: 0
