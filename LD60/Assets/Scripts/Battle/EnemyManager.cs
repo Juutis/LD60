@@ -27,6 +27,10 @@ public class EnemyManager : MonoBehaviour
     private List<Vector3> currentFormation = new();
     private int currentAttackingEnemies = 1;
 
+    [SerializeField]
+    private GameObject keyPrefab;
+    private bool keySpawned = false;
+
     private void Awake()
     {
         if (instance != null)
@@ -88,5 +92,11 @@ public class EnemyManager : MonoBehaviour
         enemies.Remove(enemy);
         aggroedEnemies.Remove(enemy);
         attackingEnemies.Remove(enemy);
+        if (enemies.Count == 0 && !keySpawned)
+        {
+            var key = Instantiate(keyPrefab);
+            key.transform.position = enemy.transform.position;
+            keySpawned = true;
+        }
     }
 }
