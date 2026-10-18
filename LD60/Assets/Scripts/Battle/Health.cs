@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
 
     private float currentHP;
     private EnemyMovement enemyMovement;
+    private PlayerMovement playerMovement;
     private BattleAnimator anim;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -17,6 +18,7 @@ public class Health : MonoBehaviour
     {
         currentHP = maxHP;
         enemyMovement = GetComponent<EnemyMovement>();
+        playerMovement = GetComponent<PlayerMovement>();
         anim = GetComponentInChildren<BattleAnimator>();
     }
 
@@ -30,7 +32,7 @@ public class Health : MonoBehaviour
                 EnemyManager.instance.SetKilled(enemyMovement);
                 enemyMovement.Die();
             }
-            else if (gameObject.TryGetComponent(out PlayerMovement playerMovement))
+            else
             {
                 playerMovement.Die();
             }
@@ -40,12 +42,17 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        currentHP -= damage;
+        testEffect.Play();
+
         if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             enemyMovement.GoAttackMode();
+            BattleUIManager.instance.UpdateEnemyHealth(maxHP, currentHP);
         }
-
-        currentHP -= damage;
-        testEffect.Play();
+        else if (playerMovement != null)
+        {
+            BattleUIManager.instance.UpdatePlayerHealth(maxHP, currentHP);
+        }
     }
 }

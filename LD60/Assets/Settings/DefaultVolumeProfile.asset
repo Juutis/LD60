@@ -537,7 +537,7 @@ MonoBehaviour:
     m_Value: 1
   UnsharpAmount:
     m_OverrideState: 1
-    m_Value: 1.093
+    m_Value: 0.92
   UnsharpRadius:
     m_OverrideState: 1
     m_Value: 1
