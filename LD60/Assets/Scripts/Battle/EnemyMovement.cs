@@ -47,6 +47,7 @@ public class EnemyMovement : MonoBehaviour
         {
             rb.linearVelocity = Vector3.zero;
             agent.destination = transform.position;
+            agent.isStopped = true;
             return;
         }
         if (state == EnemyState.Roaming)
