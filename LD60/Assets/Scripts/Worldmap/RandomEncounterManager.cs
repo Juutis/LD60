@@ -11,12 +11,15 @@ public class RandomEncounterManager : MonoBehaviour
     [SerializeField]
     private float encounterTreshold = 50f;
 
-    [SerializeField]
-    private WorldMapPlayerCharacter playerCharacter;
-
     private int encounterCount = 0;
 
     private float distanceInterval = 0.1f;
+
+    private WorldMapPlayerCharacter playerCharacter;
+    void Start()
+    {
+        playerCharacter = FindAnyObjectByType<WorldMapPlayerCharacter>();
+    }
 
     void Update()
     {
@@ -41,6 +44,7 @@ public class RandomEncounterManager : MonoBehaviour
         float playerMovementDelta = playerCharacter.MovedDistance - movedDistanceSinceEncounter;
 
         float chance = Random.Range(0, playerMovementDelta);
+        //Debug.Log($"Randomize movedDistanceSinceEncounter:[{movedDistanceSinceEncounter}] playerMovementDelta:[{playerMovementDelta}] chance:[{chance}]");
         if (chance > encounterTreshold)
         {
             encounterCount += 1;

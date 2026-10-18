@@ -1,10 +1,26 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.InputSystem;
 
 public class Car : MonoBehaviour
 {
     public static Car Instance;
 
-    private bool locked = true;
+    [SerializeField]
+    private TextMeshPro tooltipText;
+
+    private bool keyAcquired = false;
+    private PlayerMovement player;
+
+    [SerializeField]
+    private float minimumDistanceToEnter = 1f;
+
+    [SerializeField]
+    private float checkDistanceInterval = 0.2f;
+
+    private float checkDistanceTimer = 0f;
+
+    private bool playerIsClose = false;
 
     void Awake()
     {
@@ -14,25 +30,54 @@ public class Car : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void Unlock()
-    {
-        locked = false;
-    }
-
-    public void TriggerPlayerNearby()
-    {
-        if (!locked)
+        if (player == null)
         {
-            Debug.Log("Level finished!");
+            player = FindAnyObjectByType<PlayerMovement>();
+            return;
+        }
+        checkDistanceTimer += Time.deltaTime;
+        if (checkDistanceTimer > checkDistanceInterval)
+        {
+            checkDistanceTimer = 0f;
+            float distance = Vector3.Distance(player.transform.position, transform.position);
+            //Debug.Log($"{distance} = Distance({player.transform.position}, {transform.position})");
+            if (distance < minimumDistanceToEnter)
+            {
+                playerIsClose = true;
+                tooltipText.gameObject.SetActive(true);
+                if (keyAcquired)
+                {
+                    tooltipText.text = "- Press [Space] to go to world map -";
+                }
+                else
+                {
+                    tooltipText.text = "- Need to find the key! -";
+                }
+            }
+            else
+            {
+                playerIsClose = false;
+                tooltipText.gameObject.SetActive(false);
+            }
+        }
+        if (playerIsClose && keyAcquired)
+        {
+            if (Keyboard.current[Key.Space].wasPressedThisFrame)
+            {
+                keyAcquired = false;
+                GameManager.main.LoadWorldMap();
+            }
         }
     }
+
+    public void KeyAcquired()
+    {
+        keyAcquired = true;
+    }
+
 }

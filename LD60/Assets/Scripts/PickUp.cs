@@ -32,7 +32,7 @@ public class PickUp : MonoBehaviour
             case PickUpType.CASSETTE:
                 break;
             case PickUpType.KEY:
-                Car.Instance.Unlock();
+                Car.Instance.KeyAcquired();
                 break;
             case PickUpType.BATTERY:
                 break;

@@ -26,7 +26,10 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        /*var pi = FindAnyObjectByType<PlayerInput>();
+        Debug.Log($"pi: {pi.enabled}");*/
         moveAction = InputSystem.actions.FindAction("move");
+        Debug.Log(moveAction);
         rb = GetComponent<Rigidbody>();
         battleAnim = GetComponentInChildren<BattleAnimator>();
         cam = Camera.main;
@@ -54,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         }
         var left = Vector3.Cross(Vector3.up, forward);
         Vector2 move = moveAction.ReadValue<Vector2>();
+
         if (move.sqrMagnitude > 0.1f)
         {
             var moveDir = (forward * move.y + left * move.x).normalized;
@@ -87,11 +91,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 pickup.Trigger();
             }
-            var car = other.GetComponent<Car>();
+            /*var car = other.GetComponent<Car>();
             if (car != null)
             {
                 car.TriggerPlayerNearby();
-            }
+            }*/
         }
     }
 
