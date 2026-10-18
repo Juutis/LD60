@@ -24,7 +24,8 @@ public class DiscoBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up, Time.deltaTime * 60);
+        var dir = new Vector3(Mathf.Sin(Time.time), Mathf.Cos(Time.time), Mathf.Sin(Time.time * 2.312f));
+        transform.Rotate(dir, Time.deltaTime * 60);
     }
     
     private void randomizeMaterials()
