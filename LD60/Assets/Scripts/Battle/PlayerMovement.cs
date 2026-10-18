@@ -17,12 +17,15 @@ public class PlayerMovement : MonoBehaviour
 
     private BattleAnimator battleAnim;
 
+    private Camera cam;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         moveAction = InputSystem.actions.FindAction("move");
         rb = GetComponent<Rigidbody>();
         battleAnim = GetComponentInChildren<BattleAnimator>();
+        cam = Camera.main;
     }
 
     // Update is called once per frame
@@ -34,11 +37,16 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        var forward = cam.transform.forward;
+        forward.y = 0.0f;
+        forward.Normalize();
+        var left = Vector3.Cross(Vector3.up, forward);
         Vector2 move = moveAction.ReadValue<Vector2>();
         if (move.sqrMagnitude > 0.1f)
         {
-            rb.linearVelocity = new Vector3(move.x, 0f, move.y) * moveSpeed;
-            playerModel.rotation = Quaternion.RotateTowards(playerModel.rotation, Quaternion.LookRotation(new(move.x, 0f, move.y), transform.up), rotateSpeed);
+            var moveDir = (forward * move.y + left * move.x).normalized;
+            rb.linearVelocity = moveDir * moveSpeed;
+            playerModel.rotation = Quaternion.RotateTowards(playerModel.rotation, Quaternion.LookRotation(moveDir, transform.up), rotateSpeed);
             battleAnim.PlayState("Run");
         }
         else

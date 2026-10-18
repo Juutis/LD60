@@ -1662,7 +1662,7 @@ GameObject:
   - component: {fileID: 1021836243}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2243,7 +2243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5346999295108693625, guid: 11baa26e3c1854b43a3287e7cfc0e8dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5346999295108693625, guid: 11baa26e3c1854b43a3287e7cfc0e8dd, type: 3}
       propertyPath: m_LocalPosition.z
