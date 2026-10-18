@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Camera cam;
     private Vector3 camDir;
+    private int pickupLayer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         battleAnim = GetComponentInChildren<BattleAnimator>();
         cam = Camera.main;
+        pickupLayer = LayerMask.NameToLayer("Pickup");
     }
 
     // Update is called once per frame
@@ -68,5 +70,22 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 GetDirection()
     {
         return playerModel.transform.forward;
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == pickupLayer)
+        {
+            var pickup = other.GetComponent<PickUp>();
+            if (pickup != null)
+            {
+                pickup.Trigger();
+            }
+            var car = other.GetComponent<Car>();
+            if (car != null)
+            {
+                car.TriggerPlayerNearby();
+            }
+        }
     }
 }
