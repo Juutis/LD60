@@ -117,7 +117,11 @@ public class PlayerAttack : MonoBehaviour
 
     public void AttackHit()
     {
-
+        Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2f, LayerMask.NameToLayer("Enemy"));
+        if (hit.collider != null && hit.collider.TryGetComponent(out Health enemyHealth))
+        {
+            enemyHealth.TakeDamage(1);
+        }
     }
 
     public void AttackOver()
