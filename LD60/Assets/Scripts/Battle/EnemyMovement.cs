@@ -25,6 +25,7 @@ public class EnemyMovement : MonoBehaviour
     private float attackRangeSqr;
     private bool dodging = false;
     private bool alive = true;
+    private Collider coll;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,6 +37,7 @@ public class EnemyMovement : MonoBehaviour
         aggroRangeSqr = Mathf.Pow(aggroRange, 2);
         waitingRangeSqr = Mathf.Pow(waitingRange, 2);
         attackRangeSqr = Mathf.Pow(attackRange, 2);
+        coll = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -134,6 +136,7 @@ public class EnemyMovement : MonoBehaviour
     public void Die()
     {
         alive = false;
+        coll.enabled = false;
     }
 
 
