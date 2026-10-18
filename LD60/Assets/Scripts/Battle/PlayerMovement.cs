@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private InputAction moveAction;
 
-    private bool moveBlocked = false;
+    private bool moveSlowed = false;
+    private float moveSlowCoef = 0.15f;
 
     private BattleAnimator battleAnim;
 
@@ -31,12 +32,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moveBlocked)
-        {
-            rb.linearVelocity = Vector3.zero;
-            return;
-        }
-
         var forward = cam.transform.forward;
         forward.y = 0.0f;
         forward.Normalize();
@@ -45,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         if (move.sqrMagnitude > 0.1f)
         {
             var moveDir = (forward * move.y + left * move.x).normalized;
-            rb.linearVelocity = moveDir * moveSpeed;
+            rb.linearVelocity = moveDir * moveSpeed * (moveSlowed ? moveSlowCoef : 1f);
             playerModel.rotation = Quaternion.RotateTowards(playerModel.rotation, Quaternion.LookRotation(moveDir, transform.up), rotateSpeed);
             battleAnim.PlayState("Run");
         }
@@ -56,9 +51,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void BlockMoving(bool isBlocked)
+    public void SlowMoving(bool isSlowed)
     {
-        moveBlocked = isBlocked;
+        moveSlowed = isSlowed;
     }
 
     public Vector3 GetDirection()
