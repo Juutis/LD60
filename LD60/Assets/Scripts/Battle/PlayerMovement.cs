@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private BattleAnimator battleAnim;
 
     private Camera cam;
+    private Vector3 camDir;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -35,6 +36,14 @@ public class PlayerMovement : MonoBehaviour
         var forward = cam.transform.forward;
         forward.y = 0.0f;
         forward.Normalize();
+        if (forward.magnitude < 0.01f)
+        {
+            forward = camDir;
+        }
+        else
+        {
+            camDir = forward;
+        }
         var left = Vector3.Cross(Vector3.up, forward);
         Vector2 move = moveAction.ReadValue<Vector2>();
         if (move.sqrMagnitude > 0.1f)
