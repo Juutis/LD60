@@ -13,6 +13,16 @@ public class EnemyMovement : MonoBehaviour
     private float waitingRange;
     [SerializeField]
     private float attackRange;
+    [SerializeField]
+    private float attackMinDelay;
+    [SerializeField]
+    private float attackMaxDelay;
+    [SerializeField]
+    private string attackName;
+
+    private float lastHit = 0f;
+    private float currentAttackDelay = 0f;
+    private bool hitting = false;
 
     private Rigidbody rb;
     private NavMeshAgent agent;
@@ -27,6 +37,7 @@ public class EnemyMovement : MonoBehaviour
     private bool dodging = false;
     private bool alive = true;
     private Collider coll;
+    private BattleAnimator battleAnim;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,6 +50,8 @@ public class EnemyMovement : MonoBehaviour
         waitingRangeSqr = Mathf.Pow(waitingRange, 2);
         attackRangeSqr = Mathf.Pow(attackRange, 2);
         coll = GetComponent<Collider>();
+        battleAnim = GetComponentInChildren<BattleAnimator>();
+        currentAttackDelay = attackMaxDelay;
     }
 
     // Update is called once per frame
@@ -92,7 +105,7 @@ public class EnemyMovement : MonoBehaviour
                 state = EnemyState.Waiting;
             }
         }
-        else if(state == EnemyState.Waiting)
+        else if (state == EnemyState.Waiting)
         {
             bool belowWaitingRange = (player.transform.position - transform.position).sqrMagnitude <= attackRange * 1.5f;
             bool aboveWaitingRange = (player.transform.position - transform.position).sqrMagnitude >= aggroRangeSqr;
@@ -128,7 +141,7 @@ public class EnemyMovement : MonoBehaviour
 
             rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(lookDir, transform.up), rotateSpeed);
         }
-        else if(state == EnemyState.Attacking)
+        else if (state == EnemyState.Attacking)
         {
             bool aboveAttackingRange = (player.transform.position - transform.position).sqrMagnitude > attackRangeSqr;
 
@@ -138,6 +151,28 @@ public class EnemyMovement : MonoBehaviour
             {
                 NavMesh.SamplePosition(zeroY(player.transform.position - lookDir * attackRange), out NavMeshHit navHit, 3f, NavMesh.AllAreas);
                 agent.SetDestination(navHit.position);
+            }
+            else
+            {
+                if (Time.time - lastHit > currentAttackDelay && !hitting)
+                {
+                    // hit
+                    Debug.Log("HIT");
+                    battleAnim.PlayState(attackName, true);
+                    hitting = true;
+                }
+            }
+        }
+
+        if (!hitting)
+        {
+            if (agent.velocity.magnitude > 0.1f)
+            {
+                battleAnim.PlayState("Run");
+            }
+            else
+            {
+                battleAnim.PlayState("Idle");
             }
         }
     }
@@ -168,11 +203,48 @@ public class EnemyMovement : MonoBehaviour
     public void GoAttackMode()
     {
         state = EnemyState.Attacking;
+        lastHit = Time.time;
+        currentAttackDelay = GetAttackDelay();
     }
 
     public void GoAggroMode()
     {
         state = EnemyState.Aggro;
+    }
+
+    private float GetAttackDelay()
+    {
+        return attackMinDelay + Random.value * (attackMaxDelay - attackMinDelay);
+    }
+
+    public void AttackHit()
+    {
+        Vector3 hitCastDir = transform.forward;
+        Vector3 hitCastStart = transform.position + 0.5f * Vector3.up + hitCastDir * 0.85f;
+        float sphereRadius = 0.5f;
+
+        // Physics.Raycast(hitCastStart, hitCastDir, out RaycastHit hit, 4f, LayerMask.GetMask("Enemy"));
+        Collider[] cols = Physics.OverlapSphere(hitCastStart, sphereRadius, LayerMask.GetMask("Player"));
+        Debug.DrawLine(hitCastStart + Vector3.up, hitCastStart - Vector3.up, Color.magenta, 5f);
+        Debug.DrawLine(hitCastStart + Vector3.up + Vector3.forward * 0.2f, hitCastStart + Vector3.up - Vector3.forward * 0.2f, Color.magenta, 5f);
+        Debug.DrawLine(hitCastStart + Vector3.up + Vector3.right * 0.2f, hitCastStart + Vector3.up - Vector3.right * 0.2f, Color.magenta, 5f);
+
+        foreach (Collider col in cols)
+        {
+            if (col != null && col.TryGetComponent(out Health playerHealth))
+            {
+                Debug.Log("Hit!");
+                playerHealth.TakeDamage(1);
+            }
+        }
+    }
+
+    public void AttackDone()
+    {
+        Debug.Log("Attack done");
+        lastHit = Time.time;
+        hitting = false;
+        currentAttackDelay = GetAttackDelay();
     }
 }
 

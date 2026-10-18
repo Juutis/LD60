@@ -2367,6 +2367,9 @@ MonoBehaviour:
   aggroRange: 6
   waitingRange: 4
   attackRange: 1
+  attackMinDelay: 1
+  attackMaxDelay: 2
+  attackName: Attack1
 --- !u!136 &6897210146274308972
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2447,6 +2450,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2763363236899496321}
     m_Modifications:
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8603388936935448419}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8603388936935448419}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AttackHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AttackDone
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EnemyMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EnemyMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678594963040743634, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8454308228189005780, guid: a9da2c457c45cd4458b6853ed02773eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

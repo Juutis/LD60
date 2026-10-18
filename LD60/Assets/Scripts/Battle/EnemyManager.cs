@@ -55,6 +55,7 @@ public class EnemyManager : MonoBehaviour
 
                 if (enemy != null)
                 {
+                    aggroedEnemies.Remove(enemy);
                     attackingEnemies.Add(enemy);
                     enemy.GoAttackMode();
                 }
