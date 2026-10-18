@@ -52,4 +52,9 @@ public class PlayerMovement : MonoBehaviour
     {
         moveBlocked = isBlocked;
     }
+
+    public Vector3 GetDirection()
+    {
+        return playerModel.transform.forward;
+    }
 }
