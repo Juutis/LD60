@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &84872213337037942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5346999295108693625}
+  - component: {fileID: 4418804441664762496}
+  m_Layer: 0
+  m_Name: Discofloor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5346999295108693625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84872213337037942}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4418804441664762496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 84872213337037942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f693e1dc9cfd7347ba97ebc829e6d3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DiscoFloor
+  materials:
+  - {fileID: 2100000, guid: de3fdce7c9e46974bb708c6d18db32bf, type: 2}
+  - {fileID: 2100000, guid: 028b4c2dbc3e22b40bd0b68a3a379b38, type: 2}
+  - {fileID: 2100000, guid: 687470f99afb40e46b0699e949345f80, type: 2}
+  - {fileID: 2100000, guid: 6e9b8eab0a0626b40adc2c77c96c117c, type: 2}
+  - {fileID: 2100000, guid: 871ed965fab9b934b8f16bfbea7deed9, type: 2}
+  - {fileID: 2100000, guid: 16e6bd80943ca2c4b940a4a2d91e06fb, type: 2}
+  - {fileID: 2100000, guid: d3ee42c55dc9c1f4fb0d4bc28bb89cf6, type: 2}
+  - {fileID: 2100000, guid: c4ac8ed0392f2c44cba5bc44c68d7c81, type: 2}
+  width: 3
+  length: 3
+  tilePrefab: {fileID: 504409494650056515, guid: 544367c58b0b4e4488b800ab625b014d, type: 3}

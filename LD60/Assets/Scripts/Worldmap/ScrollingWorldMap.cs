@@ -26,17 +26,11 @@ public class ScrollingWorldMap : MonoBehaviour
     [SerializeField]
     private Transform fogOfWarContainer;
     [SerializeField]
-    private GameObject fogOfWarPrefab;
+    private FogOfWarBlock fogOfWarPrefab;
     [SerializeField]
     private float fogOfWarBlockSize = 0.4f;
     [SerializeField]
     private float playerVisionRange = 0.2f;
-
-
-    private Vector2 moveValue;
-/*
-    [SerializeField]
-    private bool moveEnabled = true;*/
 
     void Start()
     {
@@ -58,7 +52,10 @@ public class ScrollingWorldMap : MonoBehaviour
 
     private void GenerateFogOfWar()
     {
-        fogOfWarContainer.transform.localPosition = new Vector2(-mapImage.bounds.extents.x, mapImage.bounds.extents.y);
+        fogOfWarContainer.transform.localPosition = new Vector2(
+            -mapImage.bounds.extents.x - fogOfWarBlockSize/2,
+            mapImage.bounds.extents.y + fogOfWarBlockSize / 2
+        );
         Debug.Log(mapImage.bounds);
         Vector2Int amountOfBlocks = new (
             Mathf.CeilToInt(mapImage.bounds.size.x / fogOfWarBlockSize) + 1,
@@ -68,18 +65,9 @@ public class ScrollingWorldMap : MonoBehaviour
         {
             for (int y = 0; y < amountOfBlocks.y; y += 1)
             {
-                FogOfWarBlock fogOfWarBlock = Instantiate(
-                    fogOfWarPrefab,
-                    new Vector3(
-                        x * fogOfWarBlockSize,
-                        -y * fogOfWarBlockSize,
-                        0f
-                    ),
-                    Quaternion.identity
-                ).GetComponent<FogOfWarBlock>();
-                fogOfWarBlock.name = $"[X {x}][Y {y}]";
-                fogOfWarBlock.Initialize(fogOfWarBlockSize, playerTransform, playerVisionRange);
-                fogOfWarBlock.transform.SetParent(fogOfWarContainer, false);
+                //FogOfWarBlock fogOfWarBlock = Instantiate(fogOfWarPrefab).GetComponent<FogOfWarBlock>();
+                FogOfWarBlock fogOfWarBlock = Instantiate(fogOfWarPrefab);
+                fogOfWarBlock.Initialize(x, y, fogOfWarBlockSize, fogOfWarContainer, playerTransform, playerVisionRange);
             }
         }
         Debug.Log($"amount: {amountOfBlocks}");
@@ -100,34 +88,5 @@ public class ScrollingWorldMap : MonoBehaviour
         Vector2 newPosition = (Vector2)mapTransform.position - (moveValue * speed * Time.deltaTime);
         SetPosition(newPosition);
         return (Vector2)mapTransform.position - newPosition;
-    }
-
-    void Update()
-    {
-        /*
-        if (!moveEnabled)
-        {
-            return;
-        }*/
-        // Gather Input
-        /*var moveAction = InputSystem.actions.FindAction("Move");
-        moveValue = moveAction.ReadValue<Vector2>();*/
-    }
-
-    void FixedUpdate()
-    {
-        /*
-        if (!moveEnabled)
-        {
-            return;
-        }*/
-        // move player
-        /*Vector2 newPosition = (Vector2)mapTransform.position + -(moveValue * speed * Time.deltaTime);
-        SetPosition(newPosition);*/
-        /*Vector2 clamped = new(
-            Mathf.Clamp(newPosition.x, horizontalBounds.x, horizontalBounds.y),
-            Mathf.Clamp(newPosition.y, verticalBounds.x, verticalBounds.y)
-        );
-        transform.position = clamped;*/
     }
 }
