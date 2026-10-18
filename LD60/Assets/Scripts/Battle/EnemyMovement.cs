@@ -19,6 +19,10 @@ public class EnemyMovement : MonoBehaviour
     private float attackMaxDelay;
     [SerializeField]
     private string attackName;
+    [SerializeField]
+    private bool isDeeJay = false;
+    [SerializeField]
+    private GameObject dropOnDeath;
 
     private float lastHit = 0f;
     private float currentAttackDelay = 0f;
@@ -52,6 +56,10 @@ public class EnemyMovement : MonoBehaviour
         coll = GetComponent<Collider>();
         battleAnim = GetComponentInChildren<BattleAnimator>();
         currentAttackDelay = attackMaxDelay;
+        if (isDeeJay)
+        {
+            state = EnemyState.DJ;
+        }
     }
 
     // Update is called once per frame
@@ -163,8 +171,12 @@ public class EnemyMovement : MonoBehaviour
                 }
             }
         }
+        else if (state == EnemyState.DJ)
+        {
+            battleAnim.PlayState("DJ");
+        }
 
-        if (!hitting)
+        if (!hitting && state != EnemyState.DJ)
         {
             if (agent.velocity.magnitude > 0.1f)
             {
@@ -179,6 +191,12 @@ public class EnemyMovement : MonoBehaviour
 
     public void Die()
     {
+        if (dropOnDeath != null)
+        {
+            var drop = Instantiate(dropOnDeath);
+            drop.transform.position = transform.position;
+            dropOnDeath = null;
+        }
         alive = false;
         coll.enabled = false;
     }
@@ -202,7 +220,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void GoAttackMode()
     {
-        if (state != EnemyState.Attacking)
+        if (state != EnemyState.Attacking && !isDeeJay)
         {
             state = EnemyState.Attacking;
             lastHit = Time.time;
@@ -212,7 +230,10 @@ public class EnemyMovement : MonoBehaviour
 
     public void GoAggroMode()
     {
-        state = EnemyState.Aggro;
+        if (!isDeeJay)
+        {
+            state = EnemyState.Aggro;
+        }
     }
 
     private float GetAttackDelay()
@@ -257,4 +278,5 @@ public enum EnemyState
     Aggro,
     Waiting,
     Attacking,
+    DJ,
 }
