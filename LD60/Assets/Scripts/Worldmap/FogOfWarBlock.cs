@@ -4,6 +4,7 @@ public class FogOfWarBlock : MonoBehaviour
 {
     private Transform playerTransform;
     private float playerVisionRange;
+    private bool initialized = false;
     public void Initialize(float x, float y, float size, Transform parentContainer, Transform player, float playerVision)
     {
         transform.localScale = new(size, size);
@@ -12,10 +13,16 @@ public class FogOfWarBlock : MonoBehaviour
         name = $"[X {x}][Y {y}]";
         playerTransform = player;
         playerVisionRange = playerVision;
+        initialized = true;
     }
 
     void Update()
     {
+        if (!initialized)
+        {
+            return;
+        }
+
         if (Vector2.Distance(transform.position, playerTransform.position) < playerVisionRange)
         {
             Kill();

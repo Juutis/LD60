@@ -47,6 +47,7 @@ public class Health : MonoBehaviour
 
         if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
+            anim.Hurt();
             enemyMovement.GoAttackMode();
             BattleUIManager.instance.UpdateEnemyHealth(maxHP, currentHP);
         }

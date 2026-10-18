@@ -3,6 +3,19 @@ using UnityEngine.InputSystem;
 
 public class WorldMapPlayerCharacter : MonoBehaviour
 {
+    public static WorldMapPlayerCharacter main;
+
+    void Awake ()
+    {
+        var objs = FindObjectsByType<WorldMapPlayerCharacter>();
+        if (objs.Length > 1)
+        {
+            Destroy(gameObject);
+        }
+        main = this;
+        Reload();
+    }
+
     [SerializeField]
     private Rigidbody2D rigidbody2D;
     [SerializeField]
@@ -23,9 +36,15 @@ public class WorldMapPlayerCharacter : MonoBehaviour
     private float movedDistance = 0f;
     public float MovedDistance { get { return movedDistance; } }
 
-    void Start()
+    public void Reload()
     {
         previousPosition = transform.position;
+        moveEnabled = true;
+    }
+
+    public void Disable()
+    {
+        moveEnabled = false;
     }
 
     void Update()

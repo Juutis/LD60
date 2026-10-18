@@ -31,12 +31,15 @@ Material:
   - _SURFACE_TYPE_TRANSPARENT
   - _TEXTURESAMPLEMODE_POINT
   - _VERTEXJITTERMODE_VIEW_SPACE
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _ALPHABLEND_ON
+  - _SurfaceType_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
+  m_CustomRenderQueue: 3000
+  stringTagMap:
+    RenderType: Transparent
   disabledShaderPasses:
   - MOTIONVECTORS
   - DepthOnly
@@ -164,7 +167,7 @@ Material:
     - _SrcBlend: 5
     - _SrcBlendAlpha: 1
     - _Surface: 1
-    - _SurfaceType: 0
+    - _SurfaceType: 1
     - _TEXTURESAMPLEMODE: 0
     - _TextureResolution: 256
     - _TextureResolutionScale: 1

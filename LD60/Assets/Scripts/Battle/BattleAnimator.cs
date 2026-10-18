@@ -61,14 +61,39 @@ public class BattleAnimator : MonoBehaviour
         isDead = true;
     }
 
+    public void Hurt()
+    {
+        if (!isDead)
+        {
+            anim.Play("Hurt", 0, 0);
+            currentState = "Hurt";
+            lockAnimation = true;
+        }
+    }
+
     public void applyDamageCallback()
     {
-        applyDamageEvent.Invoke();
+        if (!isDead)
+        {
+            applyDamageEvent.Invoke();
+        }
     }
 
     public void attackFinishedCallback()
     {
-        attackFinishedEvent.Invoke();
-        lockAnimation = false;
+        if (!isDead)
+        {
+            attackFinishedEvent.Invoke();
+            lockAnimation = false;
+        }
+    }
+
+    public void animationFinishedCallback()
+    {
+        if (!isDead)
+        {
+            lockAnimation = false;
+            attackFinishedEvent.Invoke();
+        }
     }
 }
