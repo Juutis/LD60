@@ -30,6 +30,10 @@ public class Health : MonoBehaviour
                 EnemyManager.instance.SetKilled(enemyMovement);
                 enemyMovement.Die();
             }
+            else if (gameObject.TryGetComponent(out PlayerMovement playerMovement))
+            {
+                playerMovement.Die();
+            }
             anim.Die();
         }
     }
