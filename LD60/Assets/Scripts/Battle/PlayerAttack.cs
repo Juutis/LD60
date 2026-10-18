@@ -117,10 +117,23 @@ public class PlayerAttack : MonoBehaviour
 
     public void AttackHit()
     {
-        Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 2f, LayerMask.NameToLayer("Enemy"));
-        if (hit.collider != null && hit.collider.TryGetComponent(out Health enemyHealth))
+        Vector3 hitCastDir = movement.GetDirection();
+        Vector3 hitCastStart = transform.position + 0.5f * Vector3.up + hitCastDir * 0.5f;
+        float sphereRadius = 0.5f;
+
+        // Physics.Raycast(hitCastStart, hitCastDir, out RaycastHit hit, 4f, LayerMask.GetMask("Enemy"));
+        Collider[] cols = Physics.OverlapSphere(hitCastStart, sphereRadius, LayerMask.GetMask("Enemy"));
+        Debug.DrawLine(hitCastStart + Vector3.up, hitCastStart - Vector3.up, Color.red, 5f);
+        Debug.DrawLine(hitCastStart + Vector3.up + Vector3.forward * 0.2f, hitCastStart + Vector3.up - Vector3.forward * 0.2f, Color.red, 5f);
+        Debug.DrawLine(hitCastStart + Vector3.up + Vector3.right * 0.2f, hitCastStart + Vector3.up - Vector3.right * 0.2f, Color.red, 5f);
+
+        foreach (Collider col in cols)
         {
-            enemyHealth.TakeDamage(1);
+            if (col != null && col.TryGetComponent(out Health enemyHealth))
+            {
+                Debug.Log("Hit!");
+                enemyHealth.TakeDamage(1);
+            }
         }
     }
 
