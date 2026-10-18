@@ -87,12 +87,12 @@ public class PlayerAttack : MonoBehaviour
 
                 currentAttack = nextAttack;
                 actionStarted = Time.time;
-                movement.BlockMoving(true);
+                movement.SlowMoving(true);
                 battleAnim.PlayState(currentAttack.AnimState);
             }
             else
             {
-                movement.BlockMoving(false);
+                movement.SlowMoving(false);
             }
         }
     }
