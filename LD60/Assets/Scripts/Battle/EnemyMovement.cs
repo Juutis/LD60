@@ -24,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
     private float waitingRangeSqr;
     private float attackRangeSqr;
     private bool dodging = false;
+    private bool alive = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,6 +41,12 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!alive)
+        {
+            rb.linearVelocity = Vector3.zero;
+            agent.destination = transform.position;
+            return;
+        }
         if (state == EnemyState.Roaming)
         {
             if ((roamingTarget - transform.position).sqrMagnitude <= 2f)
@@ -122,6 +129,11 @@ public class EnemyMovement : MonoBehaviour
             Vector3 lookDir = zeroY(player.transform.position) - zeroY(transform.position);
             rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(lookDir, transform.up), rotateSpeed);
         }
+    }
+
+    public void Die()
+    {
+        alive = false;
     }
 
 

@@ -10,12 +10,14 @@ public class Health : MonoBehaviour
 
     private float currentHP;
     private EnemyMovement enemyMovement;
+    private BattleAnimator anim;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHP = maxHP;
         enemyMovement = GetComponent<EnemyMovement>();
+        anim = GetComponentInChildren<BattleAnimator>();
     }
 
     // Update is called once per frame
@@ -26,8 +28,9 @@ public class Health : MonoBehaviour
             if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 EnemyManager.instance.SetKilled(enemyMovement);
+                enemyMovement.Die();
             }
-            Destroy(gameObject);
+            anim.Die();
         }
     }
 

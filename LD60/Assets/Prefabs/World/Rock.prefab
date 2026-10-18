@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2738950860572876112}
   - component: {fileID: 9162294738273394271}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,6 +109,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: afb97419ea2e1be49a7fa8c3061de182, type: 3}
       propertyPath: m_Name
       value: Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: afb97419ea2e1be49a7fa8c3061de182, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
