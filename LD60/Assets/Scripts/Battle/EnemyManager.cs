@@ -25,7 +25,7 @@ public class EnemyManager : MonoBehaviour
     };
 
     private List<Vector3> currentFormation = new();
-    private int currentAttackingEnemies = 0;
+    private int currentAttackingEnemies = 1;
 
     private void Awake()
     {

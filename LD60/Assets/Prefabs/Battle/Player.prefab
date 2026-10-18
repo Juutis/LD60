@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572040d38f3fcf147af9e13ed8fcd610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  rotateSpeed: 1.05
+  rotateSpeed: 5
   moveSpeed: 1.9
   playerModel: {fileID: 6815779822534911875}
 --- !u!114 &3511224925711719009
@@ -2585,6 +2585,62 @@ PrefabInstance:
     - target: {fileID: 6630554779507558959, guid: a53b89736116ca84ca76c1230347d778, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3511224925711719009}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3511224925711719009}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AttackHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AttackOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerAttack, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerAttack, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: applyDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6801240398472940517, guid: a53b89736116ca84ca76c1230347d778, type: 3}
+      propertyPath: attackFinishedEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
