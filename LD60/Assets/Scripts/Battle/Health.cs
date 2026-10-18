@@ -9,10 +9,13 @@ public class Health : MonoBehaviour
     private float maxHP;
 
     private float currentHP;
+    private EnemyMovement enemyMovement;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHP = maxHP;
+        enemyMovement = GetComponent<EnemyMovement>();
     }
 
     // Update is called once per frame
@@ -20,6 +23,10 @@ public class Health : MonoBehaviour
     {
         if (currentHP <= 0)
         {
+            if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                EnemyManager.instance.SetKilled(enemyMovement);
+            }
             Destroy(gameObject);
         }
     }
