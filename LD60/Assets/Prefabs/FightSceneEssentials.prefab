@@ -755,6 +755,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattleUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2844180422397449825, guid: 415a2fffd8e5d6f4985f2f13562fd2e4, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 4234000316131256215}
+    - target: {fileID: 2844180422397449825, guid: 415a2fffd8e5d6f4985f2f13562fd2e4, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8645655451836122878, guid: 415a2fffd8e5d6f4985f2f13562fd2e4, type: 3}
       propertyPath: m_Pivot.x
       value: 0
