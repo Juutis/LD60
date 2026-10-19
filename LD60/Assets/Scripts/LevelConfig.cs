@@ -14,6 +14,7 @@ public class LevelConfig : ScriptableObject
     [SerializeField]
     private LevelType levelType;
     public LevelType LevelType {get {return levelType;}}
+    public float EncounterChance = 1.0f;
 }
 
 public enum LevelType

@@ -1061,6 +1061,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RandomEncounterManager
   encounterTreshold: 0.5
+  encounters:
+  - {fileID: 11400000, guid: d66c7598c66c0c344aa9b4e3e99a39a8, type: 2}
+  - {fileID: 11400000, guid: e54c0e45c7441d049a4dac20799eb2d6, type: 2}
 --- !u!4 &2028659493
 Transform:
   m_ObjectHideFlags: 0
