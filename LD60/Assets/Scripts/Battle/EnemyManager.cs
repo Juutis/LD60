@@ -61,7 +61,6 @@ public class EnemyManager : MonoBehaviour
                 {
                     aggroedEnemies.Remove(enemy);
                     attackingEnemies.Add(enemy);
-                    enemy.GoAttackMode();
                 }
                 else
                 {
@@ -74,6 +73,11 @@ public class EnemyManager : MonoBehaviour
                     }
                 }
             }
+        }
+
+        foreach (EnemyMovement enemy in attackingEnemies )
+        {
+            enemy.GoAttackMode();
         }
     }
 

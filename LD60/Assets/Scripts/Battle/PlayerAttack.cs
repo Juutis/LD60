@@ -27,6 +27,8 @@ public class PlayerAttack : MonoBehaviour
 
     private BattleAnimator battleAnim;
 
+    private bool isAttacking = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,62 +40,46 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (attackAction.WasPressedThisFrame() && inputBuffer.Count <= 3)
+        if (attackAction.WasPressedThisFrame() && !isAttacking)
         {
-            inputBuffer.Add(AttackType.normal);
-        }
+            AttackType nextType = AttackType.normal;
+            currentCombo.Add(nextType);
+            Attack nextAttack;
 
-        if (currentAttack != null)
-        {
-            float cooldownOver = currentAttack.attackTime + currentAttack.cooldown;
-
-            if (Time.time - actionStarted > cooldownOver)
+            if (currentCombo.Count == 1)
             {
-                currentAttack = null;
-                actionEnded = Time.time;
-            }
-            else if (Time.time - actionStarted > currentAttack.attackTime)
-            {
-                // attack
-            }
-        }
-
-        if (currentAttack == null)
-        {
-            if (Time.time - actionEnded > comboTimer)
-            {
-                currentCombo = new();
-            }
-
-            if (inputBuffer.Count > 0)
-            {
-                AttackType next = inputBuffer.First();
-                inputBuffer.RemoveAt(0);
-                currentCombo.Add(next);
-                Attack initialAttack = attacks.FirstOrDefault(x => x.type == next && x.isInitial);
-                Attack nextAttack = currentCombo.Count <= 1 ?
-                    initialAttack :
-                    attacks.FirstOrDefault(x => isEqualCombo(currentCombo, x.comboPattern));
-
-                if (initialAttack == null)
-                {
-                    Debug.LogError($"No initial attack defined for attack type {next}!");
-                }
-                else if (nextAttack == null) // combo finished, start a new one
-                {
-                    nextAttack = initialAttack;
-                    currentCombo = new();
-                }
-
-                currentAttack = nextAttack;
-                actionStarted = Time.time;
-                movement.SlowMoving(true);
-                battleAnim.PlayState(currentAttack.AnimState, true);
+                nextAttack = attacks.FirstOrDefault(x => x.type == nextType && x.isInitial);
             }
             else
             {
-                movement.SlowMoving(false);
+                nextAttack = attacks.FirstOrDefault(x => isEqualCombo(currentCombo, x.comboPattern));
             }
+
+            if (nextAttack == null) // combo finished, start a new one
+            {
+                nextAttack = attacks.FirstOrDefault(x => x.type == nextType && x.isInitial);
+                currentCombo = new() { nextType };
+            }
+
+            currentAttack = nextAttack;
+            actionStarted = Time.time;
+            movement.SlowMoving(true);
+            battleAnim.PlayState(currentAttack.AnimState, true);
+            isAttacking = true;
+        }
+
+        if (!isAttacking)
+        {
+            movement.SlowMoving(false);
+        }
+        else
+        {
+            movement.SlowMoving(true);
+        }
+
+        if (!isAttacking && (Time.time - actionEnded) > comboTimer)
+        {
+            currentCombo = new();
         }
     }
 
@@ -139,7 +125,8 @@ public class PlayerAttack : MonoBehaviour
 
     public void AttackOver()
     {
-
+        isAttacking = false;
+        actionEnded = Time.time;
     }
 }
 

@@ -20,7 +20,10 @@ public class MusicManager : MonoBehaviour
 
     private void Awake()
     {
-        main = this;
+        if (main == null)
+        {
+            main = this;
+        }
     }
 
     public void PlayTapeAtPosition(MusicTape tape, Vector3 position)
