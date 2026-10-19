@@ -640,8 +640,10 @@ MonoBehaviour:
   tapes:
   - {fileID: 11400000, guid: efb436694489c9745bfb10fdb5014389, type: 2}
   - {fileID: 11400000, guid: 3b62055b3c1f23f4b9e63cb44c05d003, type: 2}
-  - {fileID: 11400000, guid: 3b62055b3c1f23f4b9e63cb44c05d003, type: 2}
-  - {fileID: 11400000, guid: 3b62055b3c1f23f4b9e63cb44c05d003, type: 2}
+  - {fileID: 11400000, guid: dfae7b2896938c142a78b13f9b620906, type: 2}
+  - {fileID: 11400000, guid: f7ff4a018d214bd4f9bcccd36bdff034, type: 2}
+  - {fileID: 11400000, guid: d755b17905088064f83c1d48b4ac7898, type: 2}
+  bigVolume: 2
 --- !u!1 &6873506953818488773
 GameObject:
   m_ObjectHideFlags: 0
