@@ -11,19 +11,41 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        main = this;
+        if (main == null) {
+            main = this;
+        }
     }
 
     public void LoadLevel(LevelConfig level)
     {
+        Time.timeScale = 0f;
         worldMapContainer.gameObject.SetActive(false);
-        SceneManager.LoadScene(level.scenePath);
+        TransitionManager.main.Transition(TransitionType.FadeOut, delegate
+            {
+                SceneManager.LoadScene(level.scenePath);
+                TransitionManager.main.Transition(TransitionType.FadeIn, delegate
+                    {
+                        Time.timeScale = 1f;
+                    }
+                );
+            }
+        );
     }
 
     public void LoadWorldMap()
     {
-        SceneManager.LoadScene("worldmap");
-        worldMapContainer.gameObject.SetActive(true);
+        Time.timeScale = 0f;
+        TransitionManager.main.Transition(TransitionType.FadeOut, delegate
+            {
+                SceneManager.LoadScene("worldmap");
+                worldMapContainer.gameObject.SetActive(true);
+                TransitionManager.main.Transition(TransitionType.FadeIn, delegate
+                    {
+                        Time.timeScale = 1f;
+                    }
+                );
+            }
+        );
     }
 
 

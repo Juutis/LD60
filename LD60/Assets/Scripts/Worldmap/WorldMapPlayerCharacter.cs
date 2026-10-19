@@ -12,8 +12,11 @@ public class WorldMapPlayerCharacter : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        main = this;
-        Reload();
+        if (main == null)
+        {
+            main = this;
+            Reload();
+        }
     }
 
     [SerializeField]

@@ -13,6 +13,8 @@ public class WorldMapPoi : MonoBehaviour
 
     public Sprite Sprite { get { return sprite; } }
 
+    private bool visited = false;
+
     [SerializeField]
     private LevelConfig level;
 
@@ -20,7 +22,13 @@ public class WorldMapPoi : MonoBehaviour
     private TextMeshPro txtMesh;
 
     [SerializeField]
+    private TextMeshPro nameText;
+
+    [SerializeField]
     private float minimumDistanceToEnter = 1f;
+
+    [SerializeField]
+    private float minimumDistanceToShowName = 1f;
 
     [SerializeField]
     private float checkDistanceInterval = 0.2f;
@@ -35,10 +43,15 @@ public class WorldMapPoi : MonoBehaviour
     void Start()
     {
         playerTransform = WorldMapPlayerCharacter.main.transform;
+        nameText.text = poiName;
     }
 
     void Update()
     {
+        if (visited)
+        {
+            return;
+        }
         checkDistanceTimer += Time.deltaTime;
         if (checkDistanceTimer > checkDistanceInterval)
         {
@@ -55,11 +68,20 @@ public class WorldMapPoi : MonoBehaviour
                 playerIsClose = false;
                 txtMesh.gameObject.SetActive(false);
             }
+            if (distance < minimumDistanceToShowName)
+            {
+                nameText.gameObject.SetActive(true);
+            } else
+            {
+                nameText.gameObject.SetActive(false);
+            }
         }
         if (playerIsClose)
         {
             if (Keyboard.current[Key.Space].wasPressedThisFrame)
             {
+                visited = true;
+                txtMesh.text = "- Location cleared - ";
                 GameManager.main.LoadLevel(level);
             }
         }
