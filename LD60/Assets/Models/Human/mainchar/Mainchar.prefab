@@ -134,3 +134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b27d0024e11ef47a627e77d531343f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleAnimator
+  applyDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  attackFinishedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  DebugState: 
+  TriggerDebug: 0
+  isDead: 0

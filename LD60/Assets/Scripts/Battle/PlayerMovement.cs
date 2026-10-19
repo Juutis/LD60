@@ -110,5 +110,6 @@ public class PlayerMovement : MonoBehaviour
     public void Die()
     {
         isDead = true;
+        GameManager.main.Die();
     }
 }
