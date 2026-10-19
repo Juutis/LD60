@@ -163,9 +163,9 @@ public class PlayerAttack : MonoBehaviour
         return true;
     }
 
-    public void AddUltCharge()
+    public void AddUltCharge(int num = 1)
     {
-        ultCharges++;
+        ultCharges += num;
     }
 
     public void AttackHit()

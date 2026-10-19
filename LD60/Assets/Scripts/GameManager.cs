@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     private bool tutorial = true;
 
     public bool Tutorial {get {return tutorial;}}
+    private int batteryCount = 0;
+    private int musicsCount = 0;
 
     void Awake()
     {
@@ -61,6 +63,26 @@ public class GameManager : MonoBehaviour
         {
             LoadWorldMap();
         }
+    }
+
+    public void IncreaseMusics()
+    {
+        musicsCount++;
+    }
+
+    public void IncreaseBatteries()
+    {
+        batteryCount++;
+    }
+
+    public int GetBatteries()
+    {
+        return batteryCount;
+    }
+
+    public int GetMusics()
+    {
+        return musicsCount;
     }
 
     public void LoadWorldMap()
