@@ -207,8 +207,6 @@ public class EnemyMovement : MonoBehaviour
             {
                 if (Time.time - lastHit > currentAttackDelay && !hitting)
                 {
-                    // hit
-                    Debug.Log("HIT");
                     battleAnim.PlayState(attackName, true);
                     hitting = true;
                 }
