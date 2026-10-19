@@ -2350,7 +2350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   rotateSpeed: 5
-  moveSpeed: 1.9
+  moveSpeed: 2.1
   playerModel: {fileID: 6815779822534911875}
 --- !u!114 &3511224925711719009
 MonoBehaviour:

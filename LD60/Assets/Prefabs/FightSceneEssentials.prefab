@@ -615,7 +615,7 @@ MonoBehaviour:
   minEnemyAttackers: 2
   maxEnemyAttackers: 4
   spawnEnemyWaves: 
-  enemyPrefab: {fileID: 7122746710564247027, guid: 9ce8bdc644c782441b58aa84b0eaac3d, type: 3}
+  enemyPrefab: {fileID: 0}
   spawnPoints: []
   keyPrefab: {fileID: 1339759468037236618, guid: 5ffe6e97dd77d8b4aa8f81d95e4cabf5, type: 3}
 --- !u!1001 &4397896448368635631
@@ -758,6 +758,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattleUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2197288256901698718, guid: 415a2fffd8e5d6f4985f2f13562fd2e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2844180422397449825, guid: 415a2fffd8e5d6f4985f2f13562fd2e4, type: 3}
       propertyPath: m_Camera
       value: 
@@ -765,6 +769,14 @@ PrefabInstance:
     - target: {fileID: 2844180422397449825, guid: 415a2fffd8e5d6f4985f2f13562fd2e4, type: 3}
       propertyPath: m_VertexColorAlwaysGammaSpace
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5681190890662726455, guid: 415a2fffd8e5d6f4985f2f13562fd2e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6749798633209437338, guid: 415a2fffd8e5d6f4985f2f13562fd2e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8645655451836122878, guid: 415a2fffd8e5d6f4985f2f13562fd2e4, type: 3}
       propertyPath: m_Pivot.x

@@ -106,6 +106,11 @@ public class PlayerMovement : MonoBehaviour
                 attack.AddUltCharge();
             }
         }
+        var zone = other.GetComponent<TriggeringZone>();
+        if (zone != null)
+        {
+            zone.Event.Invoke();
+        }
     }
 
     public void Die()

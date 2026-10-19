@@ -35,6 +35,7 @@ public class PickUp : MonoBehaviour
                 BattleUIManager.instance.UpdateCasetteAcquired();
                 break;
             case PickUpType.KEY:
+                TutorialUI.Main.ShowKeyTutorial();
                 Car.Instance.KeyAcquired();
                 BattleUIManager.instance.UpdateKeyAcquired();
                 break;
