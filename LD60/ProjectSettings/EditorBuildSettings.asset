@@ -20,5 +20,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Death.unity
     guid: 6d15b72f046e5244884d799bfb96e0e0
+  - enabled: 1
+    path: Assets/Scenes/Beach.unity
+    guid: 7cfa787317144d64780abf53aed22d4a
+  - enabled: 1
+    path: Assets/Scenes/GasStation.unity
+    guid: ee6da0ca1f27b1d40907e0516f39b33e
+  - enabled: 1
+    path: Assets/Scenes/City.unity
+    guid: 200100820ff84a64184b0fa35a64ea8e
+  - enabled: 1
+    path: Assets/Scenes/PowerupEncounter.unity
+    guid: a4558c64ea9c6da449ce1456c268b9f7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

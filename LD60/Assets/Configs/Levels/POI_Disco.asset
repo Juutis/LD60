@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db544f1fe711cbb4ea507fb00e42c3e9, type: 3}
   m_Name: POI_Disco
   m_EditorClassIdentifier: Assembly-CSharp::LevelConfig
-  levelName: Disco
+  levelName: The Neon Gecko
   scenePath: Assets/Scenes/Disco.unity
   levelType: 2
