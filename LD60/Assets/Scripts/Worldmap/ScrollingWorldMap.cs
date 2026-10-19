@@ -37,6 +37,7 @@ public class ScrollingWorldMap : MonoBehaviour
         mapSprite.sprite = mapImage;
         SetupTexture();
         GenerateFogOfWar();
+        Debug.Log("Map loaded");
     }
 
     private void SetupTexture()

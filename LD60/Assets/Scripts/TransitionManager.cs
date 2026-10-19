@@ -28,16 +28,12 @@ public class TransitionManager : MonoBehaviour
 
     private Transform zoomTransform;
     private Vector3 targetPosition;
-    private Vector3 originalPosition;
     private Vector3 startingPosition;
 
 
-    private Transform player;
-
     void Start()
     {
-        player = FindAnyObjectByType<WorldMapPlayerCharacter>().transform;
-        originalPosition = transform.position;
+
     }
 
     public void Transition(TransitionType type, UnityAction after)
@@ -54,11 +50,6 @@ public class TransitionManager : MonoBehaviour
         {
             targetAlpha = type == TransitionType.FadeIn ? 0f : 1f;
             startingAlpha = fadeImage.color.a;
-        }
-        else
-        {
-            targetPosition = type == TransitionType.ZoomIn ? player.position : originalPosition;
-            startingPosition = zoomTransform.position;
         }
     }
 
@@ -103,7 +94,5 @@ public class TransitionManager : MonoBehaviour
 public enum TransitionType
 {
     FadeIn,
-    FadeOut,
-    ZoomIn,
-    ZoomOut
+    FadeOut
 }

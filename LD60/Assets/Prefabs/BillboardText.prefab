@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -1670396045891386749, guid: 78926c09d975400488f58e2f9a5934f4, type: 2}
+  - {fileID: 5673578608733424277, guid: b2e71154140fafd419a2fb5bd73668dc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '- Find the key! -'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 78926c09d975400488f58e2f9a5934f4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b2e71154140fafd419a2fb5bd73668dc, type: 2}
   m_sharedMaterial: {fileID: -1670396045891386749, guid: 78926c09d975400488f58e2f9a5934f4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

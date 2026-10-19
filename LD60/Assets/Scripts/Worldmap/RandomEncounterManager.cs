@@ -18,11 +18,15 @@ public class RandomEncounterManager : MonoBehaviour
     private WorldMapPlayerCharacter playerCharacter;
     void Start()
     {
-        playerCharacter = FindAnyObjectByType<WorldMapPlayerCharacter>();
     }
 
     void Update()
     {
+        if (playerCharacter == null)
+        {
+            playerCharacter = FindAnyObjectByType<WorldMapPlayerCharacter>();
+            return;
+        }
         if (!started)
         {
             started = true;

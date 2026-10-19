@@ -40,7 +40,7 @@ public class DeathScreen : MonoBehaviour
         {
             if (interactAction.WasPressedThisFrame())
             {
-                GameManager.main.LoadWorldMap();
+                GameManager.main.ReloadAfterDeath();
             }
         }
     }
