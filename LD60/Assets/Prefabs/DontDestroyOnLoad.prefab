@@ -644,6 +644,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7ff4a018d214bd4f9bcccd36bdff034, type: 2}
   - {fileID: 11400000, guid: d755b17905088064f83c1d48b4ac7898, type: 2}
   bigVolume: 2
+  bigMixer: {fileID: 4770399996539502306, guid: 1d0a9ce4a4ad4794c82cf84e7de21550, type: 2}
+  defaultMixer: {fileID: -3104214237483073493, guid: 1d0a9ce4a4ad4794c82cf84e7de21550, type: 2}
 --- !u!1 &6873506953818488773
 GameObject:
   m_ObjectHideFlags: 0

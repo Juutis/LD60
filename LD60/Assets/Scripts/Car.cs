@@ -12,6 +12,7 @@ public class Car : MonoBehaviour
 
     private bool keyAcquired = false;
     private bool casetteAcquired = false;
+    private bool randomEncounter = false;
     private PlayerMovement player;
 
     [SerializeField]
@@ -38,6 +39,7 @@ public class Car : MonoBehaviour
         if (SceneManager.GetActiveScene().name.Contains("Encounter"))
         {
             casetteAcquired = true;
+            randomEncounter = true;
         }
     }
 
@@ -89,9 +91,9 @@ public class Car : MonoBehaviour
         {
             if (interactAction.WasPressedThisFrame())
             {
+                GameManager.main.PassLevel(randomEncounter);
                 casetteAcquired = false;
                 keyAcquired = false;
-                GameManager.main.PassLevel();
 
                 GameManager.main.LoadWorldMap();
             }

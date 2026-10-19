@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class MusicManager : MonoBehaviour
     private AudioSource currentMusic;
 
     private List<AudioFade> fades = new();
+
+    [SerializeField]
+    private AudioMixerGroup bigMixer;
+    [SerializeField]
+    private AudioMixerGroup defaultMixer;
 
     private PlayerMovement playerMovement;
 
@@ -110,12 +116,14 @@ public class MusicManager : MonoBehaviour
 
     public void IncreaseVolume()
     {
-        Fade(currentAudioSource, bigVolume, 1f, 1f, false, false);
+        //Fade(currentAudioSource, bigVolume, 1f, 1f, false, false);
+        currentAudioSource.outputAudioMixerGroup = bigMixer;
     }
 
     public void DecreaseVolume()
     {
-        Fade(currentAudioSource, currentTape.Volume, 1f, 1f, false, false);
+        currentAudioSource.outputAudioMixerGroup = defaultMixer;
+        //Fade(currentAudioSource, currentTape.Volume, 1f, 1f, false, false);
     }
 
     private void FadePrevious()

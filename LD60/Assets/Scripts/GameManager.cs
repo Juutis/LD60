@@ -65,10 +65,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void PassLevel()
+    public void PassLevel(bool randomEncounter)
     {
-        musicsCount++;
-        MusicManager.main.PassLevel();
+        if (!randomEncounter) {
+            musicsCount++;
+            MusicManager.main.PassLevel();
+        }
     }
 
     public void IncreaseBatteries()

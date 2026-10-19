@@ -83,7 +83,7 @@ public class MainMenu : MonoBehaviour
 
         textContent.anchoredPosition = new (
             textContent.anchoredPosition.x,
-            textContent.anchoredPosition.y + fontMoveSpeed + (keyIsPressed ? extraSpeedWhenKeyIsPressed : 0)
+            textContent.anchoredPosition.y + (fontMoveSpeed * Time.deltaTime + (keyIsPressed ? extraSpeedWhenKeyIsPressed * Time.deltaTime : 0) )
         );
 
         if (textContent.anchoredPosition.y > endpointY)
