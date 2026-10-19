@@ -301,6 +301,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6782159695111970587, guid: c073431d3f07f9a4aba7dad62d96fd74, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7566920450318473406, guid: c073431d3f07f9a4aba7dad62d96fd74, type: 3}
       propertyPath: m_Name
       value: BillboardText

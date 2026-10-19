@@ -9,6 +9,7 @@ public class DontDestroyOnLoad : MonoBehaviour
         if (objs.Length > 1)
         {
             Destroy(gameObject);
+            return;
         }
 
 

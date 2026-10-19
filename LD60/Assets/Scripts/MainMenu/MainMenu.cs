@@ -55,7 +55,7 @@ public class MainMenu : MonoBehaviour
         {
             if (interactAction.WasPressedThisFrame())
             {
-                GameManager.main.LoadWorldMap();
+                SceneManager.LoadScene("Tutorial");
             }
         }
         if (isWaiting)

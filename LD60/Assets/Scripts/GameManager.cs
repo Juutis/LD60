@@ -12,10 +12,26 @@ public class GameManager : MonoBehaviour
 
     private UnityAction afterLevelCleared;
 
+    private bool tutorial = true;
+
+    public bool Tutorial {get {return tutorial;}}
+
     void Awake()
     {
         if (main == null) {
             main = this;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "worldmap")
+        {
+            if (worldMapContainer != null && !worldMapContainer.gameObject.activeSelf)
+            {
+                worldMapContainer.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -36,8 +52,23 @@ public class GameManager : MonoBehaviour
         );
     }
 
+    public void ReloadAfterDeath()
+    {
+        if (tutorial)
+        {
+            SceneManager.LoadScene("Tutorial");
+        } else
+        {
+            LoadWorldMap();
+        }
+    }
+
     public void LoadWorldMap()
     {
+        if (tutorial)
+        {
+            tutorial = false;
+        }
         if (afterLevelCleared != null)
         {
             afterLevelCleared();
