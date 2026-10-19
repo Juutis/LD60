@@ -147,7 +147,6 @@ public class EnemyMovement : MonoBehaviour
                     roamingLookDir = zeroY(roamingTarget) - zeroY(transform.position);
                     roamingTarget = navHit.position;
                     agent.SetDestination(navHit.position);
-                    Debug.Log(navHit.position);
                 }
             }
 
