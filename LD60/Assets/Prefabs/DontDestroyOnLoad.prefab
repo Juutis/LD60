@@ -130,7 +130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5924129994458909945
 Transform:
   m_ObjectHideFlags: 0
@@ -1033,11 +1033,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2278673319565596386, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.41
+      value: -5.04
       objectReference: {fileID: 0}
     - target: {fileID: 2278673319565596386, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.13
+      value: -1.77
       objectReference: {fileID: 0}
     - target: {fileID: 2278673319565596386, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1112,11 +1112,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2278673319565596386, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.79
+      value: 2.97
       objectReference: {fileID: 0}
     - target: {fileID: 2278673319565596386, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.8
+      value: 1.15
       objectReference: {fileID: 0}
     - target: {fileID: 2278673319565596386, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1191,11 +1191,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2278673319565596386, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.2
+      value: -6.51
       objectReference: {fileID: 0}
     - target: {fileID: 2278673319565596386, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.8
+      value: 7.1
       objectReference: {fileID: 0}
     - target: {fileID: 2278673319565596386, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1270,11 +1270,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2278673319565596386, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.2
+      value: 3.82
       objectReference: {fileID: 0}
     - target: {fileID: 2278673319565596386, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.13
+      value: -2.92
       objectReference: {fileID: 0}
     - target: {fileID: 2278673319565596386, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: m_LocalPosition.z
