@@ -420,16 +420,16 @@ MonoBehaviour:
     m_Value: {x: 640, y: 480}
   UseMaxFPS:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   RefreshRate:
     m_OverrideState: 1
-    m_Value: 50
+    m_Value: 24
   DecayRate:
     m_OverrideState: 1
     m_Value: 1
   EnableInterlacedRendering:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   EnableScreenBend:
     m_OverrideState: 1
     m_Value: 1
