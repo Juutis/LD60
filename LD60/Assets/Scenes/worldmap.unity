@@ -2274,7 +2274,7 @@ PrefabInstance:
     - target: {fileID: 5253663913335999689, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: level
       value: 
-      objectReference: {fileID: 11400000, guid: 8b7a78b61e3f0e34c97668d913a8d218, type: 2}
+      objectReference: {fileID: 11400000, guid: 30aad92de203f104480f8d56754243e3, type: 2}
     - target: {fileID: 5253663913335999689, guid: 82a67c111a7315746a857e5101d302b0, type: 3}
       propertyPath: poiName
       value: Highway Diner

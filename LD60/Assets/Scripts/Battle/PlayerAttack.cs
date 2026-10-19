@@ -21,6 +21,11 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private ParticleSystem ultParticles;
 
+    [SerializeField]
+    private AudioClip[] hitSounds;
+
+    private AudioSource audioSource;
+
     private InputAction attackAction;
     private InputAction ultAction;
     private PlayerMovement movement;
@@ -45,6 +50,7 @@ public class PlayerAttack : MonoBehaviour
         attackAction = InputSystem.actions.FindAction("attack");
         ultAction = InputSystem.actions.FindAction("ult");
         battleAnim = GetComponentInChildren<BattleAnimator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -179,12 +185,20 @@ public class PlayerAttack : MonoBehaviour
         Debug.DrawLine(hitCastStart + Vector3.up + Vector3.forward * 0.2f, hitCastStart + Vector3.up - Vector3.forward * 0.2f, Color.red, 5f);
         Debug.DrawLine(hitCastStart + Vector3.up + Vector3.right * 0.2f, hitCastStart + Vector3.up - Vector3.right * 0.2f, Color.red, 5f);
 
+        var hits = 0;
         foreach (Collider col in cols)
         {
             if (col != null && col.TryGetComponent(out Health enemyHealth))
             {
                 enemyHealth.TakeDamage(currentAttack.damage);
+                hits++;
             }
+        }
+
+        if (hits > 0)
+        {
+            var clip = hitSounds[UnityEngine.Random.Range(0, hitSounds.Count())];
+            audioSource.PlayOneShot(clip);
         }
     }
 
