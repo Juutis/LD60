@@ -2376,7 +2376,7 @@ MonoBehaviour:
   - name: Normal2
     type: 0
     attackTime: 0.2
-    damage: 2
+    damage: 1.5
     cooldown: 0.2
     comboPattern: 0000000000000000i
     isInitial: 0
@@ -2384,12 +2384,12 @@ MonoBehaviour:
   - name: Normal3
     type: 0
     attackTime: 0.2
-    damage: 1
+    damage: 1.5
     cooldown: 0.2
     comboPattern: 000000000000000000000000i
     isInitial: 0
     AnimState: Attack3
-  - name: Normal4
+  - name: Finisher
     type: 0
     attackTime: 0.2
     damage: 4

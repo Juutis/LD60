@@ -33,6 +33,7 @@ public class Car : MonoBehaviour
     void Start()
     {
         interactAction = InputSystem.actions.FindAction("interact");
+        
     }
 
     // Update is called once per frame
@@ -55,7 +56,7 @@ public class Car : MonoBehaviour
                 tooltipText.gameObject.SetActive(true);
                 if (keyAcquired)
                 {
-                    tooltipText.text = "- Press [Space] to go to world map -";
+                    tooltipText.text = $"- Press [{interactAction.GetBindingDisplayString(0)}] to go to world map -";
                 }
                 else
                 {

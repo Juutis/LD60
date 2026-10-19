@@ -169,6 +169,11 @@ public class PlayerAttack : MonoBehaviour
         Vector3 hitCastDir = movement.GetDirection();
         Vector3 hitCastStart = transform.position + 0.5f * Vector3.up + hitCastDir * 0.5f;
         float sphereRadius = 0.5f;
+        if (currentAttack.name == "Finisher")
+        {
+            hitCastStart = transform.position + 0.5f * Vector3.up;
+            sphereRadius = 1.0f;
+        }
 
         // Physics.Raycast(hitCastStart, hitCastDir, out RaycastHit hit, 4f, LayerMask.GetMask("Enemy"));
         Collider[] cols = Physics.OverlapSphere(hitCastStart, sphereRadius, LayerMask.GetMask("Enemy"));
@@ -181,7 +186,7 @@ public class PlayerAttack : MonoBehaviour
             if (col != null && col.TryGetComponent(out Health enemyHealth))
             {
                 Debug.Log("Hit!");
-                enemyHealth.TakeDamage(1);
+                enemyHealth.TakeDamage(currentAttack.damage);
             }
         }
     }
