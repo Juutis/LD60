@@ -2,6 +2,7 @@ using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -53,7 +54,7 @@ public class EnemyManager : MonoBehaviour
 
     void Update()
     {
-        if (attackingEnemies.Count < currentAttackingEnemies)
+        if (attackingEnemies.Count < currentAttackingEnemies && SceneManager.GetActiveScene().name != "Tutorial")
         {
             currentAttackingEnemies = Mathf.Clamp(currentAttackingEnemies + Mathf.RoundToInt(Random.value * 2f - 1f), minEnemyAttackers, maxEnemyAttackers);
 
@@ -112,6 +113,11 @@ public class EnemyManager : MonoBehaviour
 
         aggroedEnemies.Add(enemy);
         enemy.GoAggroMode();
+        
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            enemy.GoAttackMode();
+        }
     }
 
     public void SetKilled(EnemyMovement enemy)
