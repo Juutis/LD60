@@ -24,6 +24,17 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private GameObject dropOnDeath;
 
+    [SerializeField]
+    private GameObject testRoamingIndicator;
+    [SerializeField]
+    private GameObject testAggroIndicator;
+    [SerializeField]
+    private GameObject testWaitingIndicator;
+    [SerializeField]
+    private GameObject testAttackingIndicator;
+    [SerializeField]
+    private bool showStateIndicators;
+
     private float lastHit = 0f;
     private float currentAttackDelay = 0f;
     private bool hitting = false;
@@ -62,6 +73,47 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    private void TestIndicator()
+    {
+        if (!showStateIndicators)
+        {
+            testRoamingIndicator.SetActive(false);
+            testAggroIndicator.SetActive(false);
+            testWaitingIndicator.SetActive(false);
+            testAttackingIndicator.SetActive(false);
+            return;
+        }
+
+        if (state == EnemyState.Roaming)
+        {
+            testRoamingIndicator.SetActive(true);
+            testAggroIndicator.SetActive(false);
+            testWaitingIndicator.SetActive(false);
+            testAttackingIndicator.SetActive(false);
+        }
+        else if (state == EnemyState.Aggro)
+        {
+            testRoamingIndicator.SetActive(false);
+            testAggroIndicator.SetActive(true);
+            testWaitingIndicator.SetActive(false);
+            testAttackingIndicator.SetActive(false);
+        }
+        else if (state == EnemyState.Waiting)
+        {
+            testRoamingIndicator.SetActive(false);
+            testAggroIndicator.SetActive(false);
+            testWaitingIndicator.SetActive(true);
+            testAttackingIndicator.SetActive(false);
+        }
+        else if (state == EnemyState.Attacking)
+        {
+            testRoamingIndicator.SetActive(false);
+            testAggroIndicator.SetActive(false);
+            testWaitingIndicator.SetActive(false);
+            testAttackingIndicator.SetActive(true);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -72,6 +124,10 @@ public class EnemyMovement : MonoBehaviour
             GetComponent<CapsuleCollider>().enabled = false;
             return;
         }
+
+        agent.speed = moveSpeed;
+        TestIndicator();
+
         if (state == EnemyState.Roaming)
         {
             if ((roamingTarget - transform.position).sqrMagnitude <= 2f)
@@ -79,15 +135,20 @@ public class EnemyMovement : MonoBehaviour
                 Vector2 t2 = Random.onUnitCircle * 4f;
                 roamingTarget = transform.position + new Vector3(t2.x, 0f, t2.y);
                 NavMesh.SamplePosition(roamingTarget, out NavMeshHit navHit, 3f, NavMesh.AllAreas);
-                roamingLookDir = zeroY(roamingTarget) - zeroY(transform.position);
-                roamingTarget = navHit.position;
-                agent.SetDestination(navHit.position);
-                Debug.Log(navHit.position);
+
+                if (navHit.position.magnitude < 1000f)
+                {
+                    roamingLookDir = zeroY(roamingTarget) - zeroY(transform.position);
+                    roamingTarget = navHit.position;
+                    agent.SetDestination(navHit.position);
+                    Debug.Log(navHit.position);
+                }
             }
 
             Vector3 newLookDir = zeroY(roamingTarget) - zeroY(transform.position);
+            Quaternion newRot = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(newLookDir, transform.up), rotateSpeed);
 
-            if (newLookDir != Vector3.zero)
+            if (newLookDir != Vector3.zero && !isNaN(newRot))
             {
                 roamingLookDir = newLookDir;
             }
@@ -103,6 +164,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else if (state == EnemyState.Aggro)
         {
+            agent.speed = moveSpeed * 1.2f;
             rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(zeroY(player.transform.position) - zeroY(transform.position), transform.up), rotateSpeed);
             //rb.linearVelocity = transform.forward * moveSpeed;
             agent.SetDestination(player.transform.position);
@@ -126,32 +188,12 @@ public class EnemyMovement : MonoBehaviour
                 agent.SetDestination(navHit.position);
             }
 
-            // if (belowWaitingRange && !dodging)
-            // {
-            //     dodging = true;
-            // }
-            // else if (aboveWaitingRange)
-            // {
-            //     //rb.linearVelocity = transform.forward * moveSpeed;
-            //     NavMesh.SamplePosition(player.transform.position - lookDir * waitingRange, out NavMeshHit navHit, 3f, NavMesh.AllAreas);
-            //     agent.SetDestination(navHit.position);
-            //     dodging = false;
-            // }
-            // else if (dodging)
-            // {
-            //     lookDir = -1 * lookDir;
-            //     rb.linearVelocity = transform.forward * moveSpeed;
-            // }
-            // else
-            // {
-            //     rb.linearVelocity = Vector3.zero;
-            // }
-
             rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(lookDir, transform.up), rotateSpeed);
         }
         else if (state == EnemyState.Attacking)
         {
-            bool aboveAttackingRange = (player.transform.position - transform.position).sqrMagnitude > attackRangeSqr;
+            agent.speed = moveSpeed * 1.2f;
+            bool aboveAttackingRange = (player.transform.position - transform.position).sqrMagnitude > attackRangeSqr + 0.25f;
 
             Vector3 lookDir = (zeroY(player.transform.position - transform.position)).normalized;
             rb.rotation = Quaternion.RotateTowards(rb.rotation, Quaternion.LookRotation(lookDir, transform.up), rotateSpeed);
@@ -187,6 +229,16 @@ public class EnemyMovement : MonoBehaviour
                 battleAnim.PlayState("Idle");
             }
         }
+
+        if (gameObject.name == "Enemy")
+        {
+            //Debug.Log($"Enemy {agent.speed}");
+        }
+    }
+
+    private bool isNaN(Quaternion q)
+    {
+        return float.IsNaN(q.w) || float.IsNaN(q.x) || float.IsNaN(q.y) || float.IsNaN(q.z);
     }
 
     public void Die()

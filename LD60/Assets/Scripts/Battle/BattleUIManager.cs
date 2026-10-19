@@ -44,7 +44,6 @@ public class BattleUIManager : MonoBehaviour
     {
         playerHealthBar.fillAmount = playerHealth / playerMaxHealth;
         enemyHealthBar.fillAmount = enemyHealth / enemyMaxHealth;
-        Debug.Log($"{enemyHealth / enemyMaxHealth}");
 
         if (enemyHealth <= 0)
         {
