@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1133946318986924380}
   - component: {fileID: 7967616242055933173}
+  - component: {fileID: 6821106497749192921}
   m_Layer: 7
   m_Name: Cactus
   m_TagString: Untagged
@@ -54,6 +55,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.61234283, y: 2.660261, z: 0.49798393}
   m_Center: {x: -0.1121645, y: 0.83013046, z: 0.015676498}
+--- !u!114 &6821106497749192921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8321833233274108670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0183aeb9c48dc54db6926013516401e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RandomRotations
 --- !u!1001 &4256698656346429463
 PrefabInstance:
   m_ObjectHideFlags: 0
