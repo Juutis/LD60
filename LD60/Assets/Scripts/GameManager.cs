@@ -75,6 +75,11 @@ public class GameManager : MonoBehaviour
         batteryCount++;
     }
 
+    public void UseBatteries()
+    {
+        batteryCount--;
+    }
+
     public int GetBatteries()
     {
         return batteryCount;

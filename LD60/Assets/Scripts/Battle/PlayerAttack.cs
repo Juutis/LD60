@@ -101,6 +101,7 @@ public class PlayerAttack : MonoBehaviour
             isUlting = true;
             ultStarted = Time.time;
             ultCharges--;
+            GameManager.main.UseBatteries();
             ultParticles.Play();
         }
         else if (attackAction.WasPressedThisFrame() && !isAttacking)
@@ -167,6 +168,8 @@ public class PlayerAttack : MonoBehaviour
     {
         ultCharges += num;
     }
+
+    public int GetUltCharges() { return ultCharges; }
 
     public void AttackHit()
     {

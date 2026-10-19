@@ -58,6 +58,7 @@ public class EnemyMovement : MonoBehaviour
     private bool alive = true;
     private Collider coll;
     private BattleAnimator battleAnim;
+    private float lastRoamingPosTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -77,6 +78,7 @@ public class EnemyMovement : MonoBehaviour
             state = EnemyState.DJ;
         }
         audioSource = GetComponent<AudioSource>();
+        lastRoamingPosTime = Time.time;
     }
 
     private void TestIndicator()
@@ -136,11 +138,12 @@ public class EnemyMovement : MonoBehaviour
 
         if (state == EnemyState.Roaming)
         {
-            if ((roamingTarget - transform.position).sqrMagnitude <= 2f)
+            if ((roamingTarget - transform.position).sqrMagnitude <= 2f || (Time.time - lastRoamingPosTime) > 5f)
             {
                 Vector2 t2 = Random.onUnitCircle * 4f;
                 roamingTarget = transform.position + new Vector3(t2.x, 0f, t2.y);
                 NavMesh.SamplePosition(roamingTarget, out NavMeshHit navHit, 3f, NavMesh.AllAreas);
+                lastRoamingPosTime = Time.time;
 
                 if (navHit.position.magnitude < 1000f)
                 {
