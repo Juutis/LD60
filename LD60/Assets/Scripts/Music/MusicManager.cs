@@ -11,11 +11,23 @@ public class MusicManager : MonoBehaviour
     [SerializeField]
     private List<MusicTape> tapes = new();
 
-    private AudioSource currentTape;
+    private int currentTapeIndex = 0;
+
+    private int unlockedTemporary = 0;
+
+    [SerializeField]
+    private float bigVolume = 2f;
+
+    private int unlockedTapes = 0;
+
+    private AudioSource currentAudioSource;
+    private MusicTape currentTape;
 
     private AudioSource currentMusic;
 
     private List<AudioFade> fades = new();
+
+    private PlayerMovement playerMovement;
 
 
     private void Awake()
@@ -26,18 +38,84 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    public void PlayTapeAtPosition(MusicTape tape, Vector3 position)
+    void Start()
     {
-        FadePrevious();
-        currentTape = Initialize3DAudioSource(tape, position);
-        Fade(currentTape, tape.Volume);
     }
 
-    public void PlayTape2D(MusicTape tape)
+    public void PlayTape(MusicTape tape)
     {
         FadePrevious();
-        currentTape = InitializeAudioSource(tape);
-        Fade(currentTape, tape.Volume);
+        currentAudioSource = Initialize3DAudioSource(tape);
+        currentTape = tape;
+        Fade(currentAudioSource, tape.Volume);
+    }
+
+    public void UnlockTape()
+    {
+        unlockedTemporary += 1;
+        unlockedTapes += 1;
+        if (unlockedTapes == 1)
+        {
+            PlayMusic();
+        } else
+        {
+            PlayNextTape();
+        }
+    }
+
+    public void Die()
+    {
+        unlockedTapes -= unlockedTemporary;
+        unlockedTemporary = 0;
+        PlayMusic();
+    }
+
+    public void PassLevel()
+    {
+        unlockedTemporary = 0;
+    }
+
+    public void PlayMusic()
+    {
+        if (unlockedTapes == 0)
+        {
+            PauseMusic();
+            return;
+        }
+        if (currentTapeIndex >= unlockedTapes)
+        {
+            currentTapeIndex = unlockedTapes - 1;
+        }
+        if (currentTapeIndex >= tapes.Count)
+        {
+            currentTapeIndex = 0;
+        }
+        MusicTape tape = tapes[currentTapeIndex];
+        PlayTape(tape);
+    }
+
+    public void PlayNextTape()
+    {
+        currentTapeIndex += 1;
+        PlayMusic();
+    }
+
+    public void PauseMusic()
+    {
+        if (currentAudioSource != null)
+        {
+            currentAudioSource.Pause();
+        }
+    }
+
+    public void IncreaseVolume()
+    {
+        Fade(currentAudioSource, bigVolume, 1f, 1f, false, false);
+    }
+
+    public void DecreaseVolume()
+    {
+        Fade(currentAudioSource, currentTape.Volume, 1f, 1f, false, false);
     }
 
     private void FadePrevious()
@@ -46,17 +124,16 @@ public class MusicManager : MonoBehaviour
         {
             Fade(currentMusic, 0, 0.02f, 1f, true, false);
         }
-        if (currentTape != null && currentTape.isPlaying)
+        if (currentAudioSource != null && currentAudioSource.isPlaying)
         {
-            Fade(currentTape, 0, 0.02f, 1f, false, true);
+            Fade(currentAudioSource, 0, 0.02f, 1f, false, false);
         }
     }
 
-    private AudioSource Initialize3DAudioSource(MusicTape tape, Vector3 position)
+    private AudioSource Initialize3DAudioSource(MusicTape tape)
     {
         AudioSource audioSource = Instantiate(audioSourcePrefab);
         audioSource.gameObject.transform.parent = transform;
-        audioSource.gameObject.transform.position = position;
         audioSource.spatialBlend = 1f;
         audioSource.clip = tape.Audio;
         audioSource.volume = 0;
@@ -64,15 +141,6 @@ public class MusicManager : MonoBehaviour
         return audioSource;
     }
 
-    private AudioSource InitializeAudioSource(MusicTape tape)
-    {
-        AudioSource audioSource = Instantiate(audioSourcePrefab);
-        audioSource.gameObject.transform.parent = transform;
-        audioSource.clip = tape.Audio;
-        audioSource.volume = 0;
-        audioSource.name = $"MusicTape [{tape.SongName}]";
-        return audioSource;
-    }
 
     private void Fade(
         AudioSource fadeSource,
@@ -89,6 +157,22 @@ public class MusicManager : MonoBehaviour
 
     void Update()
     {
+        if (playerMovement == null)
+        {
+            playerMovement = FindAnyObjectByType<PlayerMovement>();
+        }
+        if (playerMovement == null)
+        {
+            var player = FindAnyObjectByType<WorldMapPlayerCharacter>();
+            if (player)
+            {
+                currentAudioSource.transform.position = player.transform.position;
+            }
+        }
+        if (playerMovement != null && currentAudioSource != null)
+        {
+            currentAudioSource.transform.position = playerMovement.transform.position;
+        }
         for (int index = 0; index < fades.Count; index += 1)
         {
             AudioFade fade = fades[index];

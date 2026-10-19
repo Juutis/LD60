@@ -65,9 +65,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void IncreaseMusics()
+    public void PassLevel()
     {
         musicsCount++;
+        MusicManager.main.PassLevel();
     }
 
     public void IncreaseBatteries()
@@ -117,6 +118,7 @@ public class GameManager : MonoBehaviour
 
     public void Die()
     {
+        MusicManager.main.Die();
         afterLevelCleared = null;
         SceneManager.LoadScene("Death");
     }

@@ -87,7 +87,7 @@ public class Car : MonoBehaviour
             {
                 casetteAcquired = false;
                 keyAcquired = false;
-                GameManager.main.IncreaseMusics();
+                GameManager.main.PassLevel();
 
                 GameManager.main.LoadWorldMap();
             }
@@ -102,6 +102,7 @@ public class Car : MonoBehaviour
     public void CasetteAcquired()
     {
         casetteAcquired = true;
+        MusicManager.main.UnlockTape();
     }
 
 }

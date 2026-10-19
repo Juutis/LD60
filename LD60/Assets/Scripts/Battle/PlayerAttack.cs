@@ -92,6 +92,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 isUlting = false;
                 ultParticles.Stop();
+                MusicManager.main.DecreaseVolume();
             }
             return;
         }
@@ -103,6 +104,7 @@ public class PlayerAttack : MonoBehaviour
             ultCharges--;
             GameManager.main.UseBatteries();
             ultParticles.Play();
+            MusicManager.main.IncreaseVolume();
         }
         else if (attackAction.WasPressedThisFrame() && !isAttacking)
         {
