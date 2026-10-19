@@ -135,7 +135,7 @@ Material:
     - _Glossiness: 0
     - _GlossinessSource: 0
     - _GlossyReflections: 0
-    - _HueShift: 1
+    - _HueShift: 0
     - _LIGHTINGMETHOD: 1
     - _LightnessMultiplier: 1
     - _Metallic: 0
