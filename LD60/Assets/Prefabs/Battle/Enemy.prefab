@@ -2728,12 +2728,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   rotateSpeed: 5
-  moveSpeed: 1
+  moveSpeed: 1.5
   aggroRange: 6
   waitingRange: 4
   attackRange: 1
-  attackMinDelay: 1
-  attackMaxDelay: 2
+  attackMinDelay: 0.75
+  attackMaxDelay: 1.5
   attackName: Attack1
   isDeeJay: 0
   dropOnDeath: {fileID: 0}
