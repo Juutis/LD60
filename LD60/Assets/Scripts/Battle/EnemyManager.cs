@@ -9,6 +9,12 @@ public class EnemyManager : MonoBehaviour
     private int minEnemyAttackers;
     [SerializeField]
     private int maxEnemyAttackers;
+    [SerializeField]
+    private List<int> spawnEnemyWaves;
+    [SerializeField]
+    private GameObject enemyPrefab;
+    [SerializeField]
+    private List<SpawnPoint> spawnPoints;
 
     public static EnemyManager instance;
 
@@ -18,14 +24,11 @@ public class EnemyManager : MonoBehaviour
 
     private PlayerMovement player;
 
-    private Dictionary<int, List<Vector3>> enemyFormations = new() {
-        { 0, new() { Vector3.forward, -Vector3.forward } },
-        { 1, new() { Vector3.forward, Vector3.right, -Vector3.right } },
-        { 2, new() { Vector3.right, -Vector3.right } }
-    };
-
-    private List<Vector3> currentFormation = new();
     private int currentAttackingEnemies = 1;
+
+    private int totalEnemyCount = 0;
+    private int enemiesKilled = 0;
+    private int currentEnemyWave = 0;
 
     [SerializeField]
     private GameObject keyPrefab;
@@ -45,6 +48,7 @@ public class EnemyManager : MonoBehaviour
     {
         player = FindAnyObjectByType<PlayerMovement>();
         enemies = FindObjectsByType<EnemyMovement>().ToList();
+        totalEnemyCount = enemies.Count + spawnEnemyWaves.Sum();
     }
 
     void Update()
@@ -78,6 +82,25 @@ public class EnemyManager : MonoBehaviour
         {
             enemy.GoAttackMode();
         }
+
+        if (enemies.Count == 0 && currentEnemyWave < spawnEnemyWaves.Count)
+        {
+            int enemySpawnCount = spawnEnemyWaves[currentEnemyWave];
+            var spawners = spawnPoints
+                .OrderBy(x => (x.transform.position - player.transform.position).sqrMagnitude)
+                .Take(enemySpawnCount)
+                .ToList();
+
+            for (int i = 0; i < enemySpawnCount; i++)
+            {
+                GameObject enemy = Instantiate(enemyPrefab, Vector3.zero, Quaternion.identity, null);
+                enemy.SetActive(false);
+                spawners[i].Spawn(enemy);
+                enemies.Add(enemy.GetComponent<EnemyMovement>());
+            }
+
+            currentEnemyWave++;
+        }
     }
 
     public void SetAggroed(EnemyMovement enemy)
@@ -96,7 +119,7 @@ public class EnemyManager : MonoBehaviour
         enemies.Remove(enemy);
         aggroedEnemies.Remove(enemy);
         attackingEnemies.Remove(enemy);
-        if (enemies.Count == 0 && !keySpawned)
+        if (enemiesKilled >= totalEnemyCount && !keySpawned)
         {
             var key = Instantiate(keyPrefab);
             key.transform.position = enemy.transform.position;
