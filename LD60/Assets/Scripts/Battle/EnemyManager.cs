@@ -55,7 +55,7 @@ public class EnemyManager : MonoBehaviour
 
             for (int i = 0; i < (currentAttackingEnemies - attackingEnemies.Count); i++)
             {
-                EnemyMovement enemy = aggroedEnemies.FirstOrDefault(x => !attackingEnemies.Contains(x));
+                EnemyMovement enemy = aggroedEnemies.OrderBy(x => (x.transform.position - player.transform.position).sqrMagnitude).FirstOrDefault(x => !attackingEnemies.Contains(x));
 
                 if (enemy != null)
                 {
@@ -64,12 +64,11 @@ public class EnemyManager : MonoBehaviour
                 }
                 else
                 {
-                    EnemyMovement roamingEnemy = enemies.FirstOrDefault(x => !aggroedEnemies.Contains(x));
+                    EnemyMovement roamingEnemy = enemies.OrderBy(x => (x.transform.position - player.transform.position).sqrMagnitude).FirstOrDefault(x => !aggroedEnemies.Contains(x));
 
                     if (roamingEnemy != null)
                     {
-                        aggroedEnemies.Add(roamingEnemy);
-                        roamingEnemy.GoAggroMode(); 
+                        SetAggroed(roamingEnemy);
                     }
                 }
             }
@@ -89,6 +88,7 @@ public class EnemyManager : MonoBehaviour
         }
 
         aggroedEnemies.Add(enemy);
+        enemy.GoAggroMode();
     }
 
     public void SetKilled(EnemyMovement enemy)

@@ -159,6 +159,7 @@ public class EnemyMovement : MonoBehaviour
             if ((player.transform.position - transform.position).sqrMagnitude <= aggroRangeSqr)
             {
                 state = EnemyState.Aggro;
+                EnemyManager.instance.SetAggroed(this);
                 Debug.Log("Player found");
             }
         }
