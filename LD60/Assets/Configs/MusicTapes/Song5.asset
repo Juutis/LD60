@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Song5
   m_EditorClassIdentifier: Assembly-CSharp::MusicTape
   audio: {fileID: 8300000, guid: 9a99da00987b8bb40a1ce241095ba49d, type: 3}
-  volume: 0.4
+  lpAudio: {fileID: 8300000, guid: 756a9ffe4935bb34da51e8bce71e1c94, type: 3}
+  volume: 0.6
   songName: Song 5
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

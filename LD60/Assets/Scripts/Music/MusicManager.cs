@@ -22,16 +22,12 @@ public class MusicManager : MonoBehaviour
     private int unlockedTapes = 0;
 
     private AudioSource currentAudioSource;
+    private AudioSource currentBigAudioSource;
     private MusicTape currentTape;
 
     private AudioSource currentMusic;
 
     private List<AudioFade> fades = new();
-
-    [SerializeField]
-    private AudioMixerGroup bigMixer;
-    [SerializeField]
-    private AudioMixerGroup defaultMixer;
 
     private PlayerMovement playerMovement;
 
@@ -52,8 +48,11 @@ public class MusicManager : MonoBehaviour
     {
         FadePrevious();
         currentAudioSource = Initialize3DAudioSource(tape);
+        currentBigAudioSource = Initialize3DAudioSource(tape, true);
         currentTape = tape;
         Fade(currentAudioSource, tape.Volume);
+        currentBigAudioSource.volume = 0f;
+        currentBigAudioSource.Play();
     }
 
     public void UnlockTape()
@@ -117,13 +116,21 @@ public class MusicManager : MonoBehaviour
     public void IncreaseVolume()
     {
         //Fade(currentAudioSource, bigVolume, 1f, 1f, false, false);
-        currentAudioSource.outputAudioMixerGroup = bigMixer;
+        //currentAudioSource.outputAudioMixerGroup = bigMixer;
+        currentAudioSource.volume = 0f;
+        currentBigAudioSource.volume = currentTape.Volume;
+        //Fade(currentAudioSource, 0, 0.02f, 1f, false, false);
+        //Fade(currentBigAudioSource, currentTape.Volume, 0.02f, 1f, false, false);
     }
 
     public void DecreaseVolume()
     {
-        currentAudioSource.outputAudioMixerGroup = defaultMixer;
+        //currentAudioSource.outputAudioMixerGroup = defaultMixer;
         //Fade(currentAudioSource, currentTape.Volume, 1f, 1f, false, false);
+        currentAudioSource.volume = currentTape.Volume;
+        currentBigAudioSource.volume = 0f;
+        //Fade(currentBigAudioSource, 0, 0.02f, 1f, false, false);
+        //Fade(currentAudioSource, currentTape.Volume, 0.02f, 1f, false, false);
     }
 
     private void FadePrevious()
@@ -138,14 +145,19 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    private AudioSource Initialize3DAudioSource(MusicTape tape)
+    private AudioSource Initialize3DAudioSource(MusicTape tape, bool big = false)
     {
         AudioSource audioSource = Instantiate(audioSourcePrefab);
         audioSource.gameObject.transform.parent = transform;
         audioSource.spatialBlend = 1f;
-        audioSource.clip = tape.Audio;
+        if (big) {
+            audioSource.clip = tape.Audio;
+        } else
+        {
+            audioSource.clip = tape.LPAudio;
+        }
         audioSource.volume = 0;
-        audioSource.name = $"MusicTape [{tape.SongName}]";
+        audioSource.name = $"MusicTape [{tape.SongName}] (big: {big})";
         return audioSource;
     }
 
@@ -175,11 +187,13 @@ public class MusicManager : MonoBehaviour
             if (player)
             {
                 currentAudioSource.transform.position = player.transform.position;
+                currentBigAudioSource.transform.position = player.transform.position;
             }
         }
         if (playerMovement != null && currentAudioSource != null)
         {
             currentAudioSource.transform.position = playerMovement.transform.position;
+                currentBigAudioSource.transform.position = playerMovement.transform.position;
         }
         for (int index = 0; index < fades.Count; index += 1)
         {

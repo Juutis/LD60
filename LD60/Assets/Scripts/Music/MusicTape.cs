@@ -6,6 +6,9 @@ public class MusicTape : ScriptableObject
     [SerializeField]
     private AudioClip audio;
     public AudioClip Audio { get { return audio; } }
+    [SerializeField]
+    private AudioClip lpAudio;
+    public AudioClip LPAudio { get { return lpAudio; } }
 
     [SerializeField]
     private  float volume;
