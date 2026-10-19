@@ -18,6 +18,8 @@ public class PlayerAttack : MonoBehaviour
     private float ultChargeDuration;
     [SerializeField]
     private Transform playerModel;
+    [SerializeField]
+    private ParticleSystem ultParticles;
 
     private InputAction attackAction;
     private InputAction ultAction;
@@ -69,7 +71,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 Vector3 origin = ray.Item1;
                 Vector3 end = ray.Item2;
-                Vector3 dir = end.normalized;
+                Vector3 dir = (end - origin).normalized;
                 float distance = (end - origin).magnitude;
                 Debug.DrawLine(origin, end, Color.violetRed);
                 Physics.Raycast(origin, dir, out RaycastHit hitInfo, distance, LayerMask.GetMask("Enemy"));
@@ -89,6 +91,7 @@ public class PlayerAttack : MonoBehaviour
             if (Time.time - ultStarted > ultChargeDuration)
             {
                 isUlting = false;
+                ultParticles.Stop();
             }
             return;
         }
@@ -98,6 +101,7 @@ public class PlayerAttack : MonoBehaviour
             isUlting = true;
             ultStarted = Time.time;
             ultCharges--;
+            ultParticles.Play();
         }
         else if (attackAction.WasPressedThisFrame() && !isAttacking)
         {

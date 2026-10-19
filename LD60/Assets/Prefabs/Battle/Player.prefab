@@ -2398,8 +2398,9 @@ MonoBehaviour:
     isInitial: 0
     AnimState: Attack4
   comboTimer: 0.5
-  ultChargeDuration: 1000
+  ultChargeDuration: 5
   playerModel: {fileID: 6815779822534911875}
+  ultParticles: {fileID: 7872280837993528907}
 --- !u!114 &5762751630604600922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2514,7 +2515,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
