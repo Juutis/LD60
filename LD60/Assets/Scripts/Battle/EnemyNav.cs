@@ -20,7 +20,6 @@ public class EnemyNav : MonoBehaviour
     {
         if ((transform.position - target).sqrMagnitude < 1.5f)
         {
-            Debug.Log("Target found");
             Vector2 v = Random.onUnitCircle * 3;
             target = new Vector3(v.x, 0f, v.y);
             agent.SetDestination(target);

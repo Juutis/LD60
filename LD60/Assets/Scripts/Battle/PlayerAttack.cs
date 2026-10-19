@@ -39,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
 
     private bool isAttacking = false;
 
-    private bool isUlting = true;
+    private bool isUlting = false;
     private float ultStarted;
     private int ultCharges = 0;
 

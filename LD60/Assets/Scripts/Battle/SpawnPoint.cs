@@ -30,7 +30,6 @@ public class SpawnPoint : MonoBehaviour
 
         enemy = e;
         beamParticles.Play();
-        Debug.Log("Enemy spawn started");
         Invoke(nameof(ActivateEnemy), 2f);
         Vector3 pos = transform.position;
         enemy.transform.position = new Vector3(pos.x, 0f, pos.z);
@@ -40,7 +39,6 @@ public class SpawnPoint : MonoBehaviour
     {
         if (enemy != null)
         {
-            Debug.Log("Enemy spawned");
             enemy.SetActive(true);
             enemy = null;
         }

@@ -131,7 +131,6 @@ public class EnemyManager : MonoBehaviour
         aggroedEnemies.Remove(enemy);
         attackingEnemies.Remove(enemy);
 
-        Debug.Log($"Enemies killed {enemiesKilled} out of {totalEnemyCount}");
         if (enemiesKilled >= totalEnemyCount && !keySpawned)
         {
             var key = Instantiate(keyPrefab);

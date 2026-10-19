@@ -166,7 +166,6 @@ public class EnemyMovement : MonoBehaviour
             {
                 state = EnemyState.Aggro;
                 EnemyManager.instance.SetAggroed(this);
-                Debug.Log("Player found");
             }
         }
         else if (state == EnemyState.Aggro)
