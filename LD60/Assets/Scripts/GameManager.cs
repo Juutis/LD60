@@ -105,8 +105,15 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         TransitionManager.main.Transition(TransitionType.FadeOut, delegate
             {
-                SceneManager.LoadScene("worldmap");
-                worldMapContainer.gameObject.SetActive(true);
+                if (musicsCount >= 5)
+                {
+                    SceneManager.LoadScene("Victory");
+                }
+                else
+                {
+                    SceneManager.LoadScene("worldmap");
+                    worldMapContainer.gameObject.SetActive(true);
+                }
                 TransitionManager.main.Transition(TransitionType.FadeIn, delegate
                     {
                         Time.timeScale = 1f;

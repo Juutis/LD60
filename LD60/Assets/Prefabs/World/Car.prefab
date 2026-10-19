@@ -302,12 +302,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6782159695111970587, guid: c073431d3f07f9a4aba7dad62d96fd74, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5673578608733424277, guid: b2e71154140fafd419a2fb5bd73668dc, type: 2}
+    - target: {fileID: 6782159695111970587, guid: c073431d3f07f9a4aba7dad62d96fd74, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7566920450318473406, guid: c073431d3f07f9a4aba7dad62d96fd74, type: 3}
       propertyPath: m_Name
       value: BillboardText
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566920450318473406, guid: c073431d3f07f9a4aba7dad62d96fd74, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
