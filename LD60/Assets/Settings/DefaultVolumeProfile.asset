@@ -414,10 +414,10 @@ MonoBehaviour:
     m_Value: 0
   EnableScreenSettings:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   ScreenResolution:
     m_OverrideState: 1
-    m_Value: {x: 640, y: 480}
+    m_Value: {x: 320, y: 500}
   UseMaxFPS:
     m_OverrideState: 1
     m_Value: 1

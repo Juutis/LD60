@@ -689,7 +689,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Use Boombox: C or L
+  m_text: 'Use Boombox: X or K
 
     (Make sure you have batteries)'
   m_isRightToLeft: 0
@@ -1441,7 +1441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Attack: J or X'
+  m_text: 'Attack: J or C'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 37c24cde2d32c164cb1a00a36db47bea, type: 2}
   m_sharedMaterial: {fileID: 8897491255319189049, guid: 37c24cde2d32c164cb1a00a36db47bea, type: 2}
