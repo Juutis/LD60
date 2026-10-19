@@ -197,7 +197,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (hits > 0)
         {
-            var clip = hitSounds[UnityEngine.Random.Range(0, hitSounds.Count())];
+            var clip = hitSounds[UnityEngine.Random.Range(0, hitSounds.Length)];
             audioSource.PlayOneShot(clip);
         }
     }

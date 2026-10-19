@@ -35,6 +35,11 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     private bool showStateIndicators;
 
+    [SerializeField]
+    private AudioClip[] hitSounds;
+
+    private AudioSource audioSource;
+
     private float lastHit = 0f;
     private float currentAttackDelay = 0f;
     private bool hitting = false;
@@ -71,6 +76,7 @@ public class EnemyMovement : MonoBehaviour
         {
             state = EnemyState.DJ;
         }
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void TestIndicator()
@@ -311,6 +317,8 @@ public class EnemyMovement : MonoBehaviour
             if (col != null && col.TryGetComponent(out Health playerHealth))
             {
                 playerHealth.TakeDamage(1);
+                var clip = hitSounds[Random.Range(0, hitSounds.Length)];
+                audioSource.PlayOneShot(clip);
             }
         }
     }
