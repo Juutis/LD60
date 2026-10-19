@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RandomEncounterManager : MonoBehaviour
@@ -14,6 +16,9 @@ public class RandomEncounterManager : MonoBehaviour
     private int encounterCount = 0;
 
     private float distanceInterval = 0.1f;
+
+    [SerializeField]
+    private List<LevelConfig> encounters;
 
     private WorldMapPlayerCharacter playerCharacter;
     void Start()
@@ -63,6 +68,25 @@ public class RandomEncounterManager : MonoBehaviour
 
     private void StartRandomEncounter()
     {
+        var sumOfChances = encounters.Sum(it => it.EncounterChance);
+        var target = Random.Range(0, sumOfChances);
+        float accumulator = 0.0f;
+        LevelConfig levelConfig = null;
+        for(var i = 0; i < encounters.Count; i++)
+        {
+            accumulator += encounters[i].EncounterChance;
+            if (accumulator > target)
+            {
+                levelConfig = encounters[i];
+                break;
+            }
+        }
+        if (levelConfig != null)
+        {
+            GameManager.main.LoadLevel(levelConfig, delegate
+                    {
+                    });
+        }
     }
 
 }
