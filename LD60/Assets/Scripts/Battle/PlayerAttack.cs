@@ -114,7 +114,7 @@ public class PlayerAttack : MonoBehaviour
             if (col != null && col.TryGetComponent(out Health enemyHealth))
             {
                 Debug.Log("Hit!");
-                enemyHealth.TakeDamage(1);
+                enemyHealth.TakeDamage(currentAttack.damage);
             }
         }
     }
