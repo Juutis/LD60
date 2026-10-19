@@ -612,8 +612,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141d457997188f040b1767ce9a1b379b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
-  minEnemyAttackers: 2
-  maxEnemyAttackers: 4
+  minEnemyAttackers: 3
+  maxEnemyAttackers: 5
   spawnEnemyWaves: 
   enemyPrefab: {fileID: 7122746710564247027, guid: 9ce8bdc644c782441b58aa84b0eaac3d, type: 3}
   spawnPoints: []
