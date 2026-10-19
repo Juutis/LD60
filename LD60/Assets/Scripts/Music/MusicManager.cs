@@ -143,6 +143,10 @@ public class MusicManager : MonoBehaviour
         {
             Fade(currentAudioSource, 0, 0.02f, 1f, false, false);
         }
+        if (currentBigAudioSource != null && currentBigAudioSource.isPlaying)
+        {
+            Fade(currentBigAudioSource, 0, 0.02f, 1f, false, false);
+        }
     }
 
     private AudioSource Initialize3DAudioSource(MusicTape tape, bool big = false)
