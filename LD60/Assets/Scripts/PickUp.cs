@@ -30,7 +30,6 @@ public class PickUp : MonoBehaviour
         switch(type)
         {
             case PickUpType.CASSETTE:
-                GameManager.main.IncreaseMusics();
                 Car.Instance.CasetteAcquired();
                 BattleUIManager.instance.UpdateCasetteAcquired();
                 break;

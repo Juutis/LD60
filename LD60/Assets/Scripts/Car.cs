@@ -91,6 +91,7 @@ public class Car : MonoBehaviour
             {
                 casetteAcquired = false;
                 keyAcquired = false;
+                GameManager.main.IncreaseMusics();
 
                 GameManager.main.LoadWorldMap();
             }
