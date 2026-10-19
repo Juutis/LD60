@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private Transform worldMapContainer;
 
     private UnityAction afterLevelCleared;
+    private int batteryCount = 0;
+    private int musicsCount = 0;
 
     void Awake()
     {
@@ -34,6 +36,26 @@ public class GameManager : MonoBehaviour
                 );
             }
         );
+    }
+
+    public void IncreaseMusics()
+    {
+        musicsCount++;
+    }
+
+    public void IncreaseBatteries()
+    {
+        batteryCount++;
+    }
+
+    public int GetBatteries()
+    {
+        return batteryCount;
+    }
+
+    public int GetMusics()
+    {
+        return musicsCount;
     }
 
     public void LoadWorldMap()

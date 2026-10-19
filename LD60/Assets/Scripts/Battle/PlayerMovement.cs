@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         attack = GetComponent<PlayerAttack>();
         cam = Camera.main;
         pickupLayer = LayerMask.NameToLayer("Pickup");
+        attack.AddUltCharge(GameManager.main.GetBatteries());
     }
 
     // Update is called once per frame
