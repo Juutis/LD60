@@ -117,13 +117,19 @@ public class MusicManager : MonoBehaviour
     public void IncreaseVolume()
     {
         //Fade(currentAudioSource, bigVolume, 1f, 1f, false, false);
-        currentAudioSource.outputAudioMixerGroup = bigMixer;
+        if (currentAudioSource != null)
+        {
+            currentAudioSource.outputAudioMixerGroup = bigMixer;
+        }
     }
 
     public void DecreaseVolume()
     {
-        currentAudioSource.outputAudioMixerGroup = defaultMixer;
-        //Fade(currentAudioSource, currentTape.Volume, 1f, 1f, false, false);
+        if (currentAudioSource != null)
+        {
+            currentAudioSource.outputAudioMixerGroup = defaultMixer;
+            //Fade(currentAudioSource, currentTape.Volume, 1f, 1f, false, false);
+        }
     }
 
     private void FadePrevious()
