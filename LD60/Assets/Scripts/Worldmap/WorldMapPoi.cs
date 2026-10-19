@@ -8,6 +8,7 @@ public class WorldMapPoi : MonoBehaviour
     private string poiName;
     public string PoiName { get { return poiName; } }
 
+
     [SerializeField]
     private Sprite sprite;
 
@@ -39,11 +40,17 @@ public class WorldMapPoi : MonoBehaviour
 
     private Transform playerTransform;
 
+    private InputAction interactAction;
+
 
     void Start()
     {
         playerTransform = WorldMapPlayerCharacter.main.transform;
         nameText.text = poiName;
+
+        interactAction = InputSystem.actions.FindAction("interact");
+
+        txtMesh.text = $"- Press [{interactAction.GetBindingDisplayString(0)}] to enter -";
     }
 
     void Update()
@@ -78,7 +85,7 @@ public class WorldMapPoi : MonoBehaviour
         }
         if (playerIsClose)
         {
-            if (Keyboard.current[Key.Space].wasPressedThisFrame)
+            if (interactAction.WasPressedThisFrame())
             {
                 visited = true;
                 txtMesh.text = "- Location cleared - ";
