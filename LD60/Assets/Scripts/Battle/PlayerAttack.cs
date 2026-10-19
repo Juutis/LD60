@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -13,8 +14,13 @@ public class PlayerAttack : MonoBehaviour
     private List<Attack> attacks;
     [SerializeField]
     private float comboTimer = 0.5f;
+    [SerializeField]
+    private float ultChargeDuration;
+    [SerializeField]
+    private Transform playerModel;
 
     private InputAction attackAction;
+    private InputAction ultAction;
     private PlayerMovement movement;
 
     private Attack currentAttack;
@@ -26,18 +32,74 @@ public class PlayerAttack : MonoBehaviour
 
     private bool isAttacking = false;
 
+    private bool isUlting = true;
+    private float ultStarted;
+    private int ultCharges = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         movement = GetComponent<PlayerMovement>();
         attackAction = InputSystem.actions.FindAction("attack");
+        ultAction = InputSystem.actions.FindAction("ult");
         battleAnim = GetComponentInChildren<BattleAnimator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (attackAction.WasPressedThisFrame() && !isAttacking)
+        BattleUIManager.instance.UpdateBatteryCounter(ultCharges);
+
+        if (isUlting)
+        {
+            float coef = Mathf.Lerp(0f, 3f, (Time.time - ultStarted)*2f % 1f);
+            Vector3 uPos = playerModel.position;
+            Vector3 orig = uPos + Vector3.up * 0.5f;
+            Vector3 uDir = playerModel.position + playerModel.forward * coef + Vector3.up * 0.5f;
+
+            List<Tuple<Vector3, Vector3>> rays = new() {
+                new(orig, uDir),
+                new(orig, uDir + playerModel.right * coef * 0.5f),
+                new(orig, uDir - playerModel.right * coef * 0.5f),
+                new(orig, uDir + playerModel.right * coef * 0.25f),
+                new(orig, uDir - playerModel.right * coef * 0.25f)
+            };
+
+            foreach(Tuple<Vector3, Vector3> ray in rays)
+            {
+                Vector3 origin = ray.Item1;
+                Vector3 end = ray.Item2;
+                Vector3 dir = end.normalized;
+                float distance = (end - origin).magnitude;
+                Debug.DrawLine(origin, end, Color.violetRed);
+                Physics.Raycast(origin, dir, out RaycastHit hitInfo, distance, LayerMask.GetMask("Enemy"));
+
+                if (hitInfo.collider != null && hitInfo.collider.gameObject.TryGetComponent(out Health enemy))
+                {
+                    enemy.TakeDamage(1000);
+                }
+            }
+
+            // Debug.DrawLine(transform.position + Vector3.up * 0.5f, transform.position + transform.forward * coef + Vector3.up * 0.5f, Color.violetRed);
+            // Debug.DrawLine(transform.position + Vector3.up * 0.5f, transform.position + transform.forward * coef + Vector3.up * 0.5f + Vector3.right * coef * 0.5f, Color.violetRed);
+            // Debug.DrawLine(transform.position + Vector3.up * 0.5f, transform.position + transform.forward * coef + Vector3.up * 0.5f - Vector3.right * coef * 0.5f, Color.violetRed);
+            // Debug.DrawLine(transform.position + Vector3.up * 0.5f, transform.position + transform.forward * coef + Vector3.up * 0.5f + Vector3.right * coef * 0.25f, Color.violetRed);
+            // Debug.DrawLine(transform.position + Vector3.up * 0.5f, transform.position + transform.forward * coef + Vector3.up * 0.5f - Vector3.right * coef * 0.25f, Color.violetRed);
+
+            if (Time.time - ultStarted > ultChargeDuration)
+            {
+                isUlting = false;
+            }
+            return;
+        }
+
+        if (ultAction.WasPressedThisFrame() && !isAttacking && ultCharges > 0)
+        {
+            isUlting = true;
+            ultStarted = Time.time;
+            ultCharges--;
+        }
+        else if (attackAction.WasPressedThisFrame() && !isAttacking)
         {
             AttackType nextType = AttackType.normal;
             currentCombo.Add(nextType);
@@ -95,6 +157,11 @@ public class PlayerAttack : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void AddUltCharge()
+    {
+        ultCharges++;
     }
 
     public void AttackHit()

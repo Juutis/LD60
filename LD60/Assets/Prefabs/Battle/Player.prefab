@@ -2398,6 +2398,8 @@ MonoBehaviour:
     isInitial: 0
     AnimState: Attack4
   comboTimer: 0.5
+  ultChargeDuration: 1000
+  playerModel: {fileID: 6815779822534911875}
 --- !u!114 &5762751630604600922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2503,7 +2505,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5067199655271785265}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0

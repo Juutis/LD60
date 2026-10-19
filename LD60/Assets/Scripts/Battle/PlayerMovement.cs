@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float moveSlowCoef = 0.15f;
 
     private BattleAnimator battleAnim;
+    private PlayerAttack attack;
 
     private Camera cam;
     private Vector3 camDir;
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(moveAction);
         rb = GetComponent<Rigidbody>();
         battleAnim = GetComponentInChildren<BattleAnimator>();
+        attack = GetComponent<PlayerAttack>();
         cam = Camera.main;
         pickupLayer = LayerMask.NameToLayer("Pickup");
     }
@@ -87,15 +89,21 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.layer == pickupLayer)
         {
             var pickup = other.GetComponent<PickUp>();
+            PickUpType? type = null;
             if (pickup != null)
             {
-                pickup.Trigger();
+                type = pickup.Trigger();
             }
             /*var car = other.GetComponent<Car>();
             if (car != null)
             {
                 car.TriggerPlayerNearby();
             }*/
+
+            if (type == PickUpType.BATTERY)
+            {
+                attack.AddUltCharge();
+            }
         }
     }
 

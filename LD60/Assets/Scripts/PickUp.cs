@@ -25,7 +25,7 @@ public class PickUp : MonoBehaviour
     {
     }
 
-    public void Trigger()
+    public PickUpType Trigger()
     {
         switch(type)
         {
@@ -38,6 +38,7 @@ public class PickUp : MonoBehaviour
                 break;
         }
         Destroy(gameObject);
+        return type;
     }
 }
 

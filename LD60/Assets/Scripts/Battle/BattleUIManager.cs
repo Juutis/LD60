@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,9 @@ public class BattleUIManager : MonoBehaviour
 
     [SerializeField]
     private Image enemyHealthBar;
+
+    [SerializeField]
+    private TextMeshProUGUI batteryCounter;
 
     [SerializeField]
     private GameObject enemyContainer;
@@ -72,5 +76,10 @@ public class BattleUIManager : MonoBehaviour
         {
             enemyDiedTime = Time.time;
         }
+    }
+
+    public void UpdateBatteryCounter(int count)
+    {
+        batteryCounter.text = count.ToString();
     }
 }
