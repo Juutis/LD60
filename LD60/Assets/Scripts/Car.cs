@@ -22,6 +22,8 @@ public class Car : MonoBehaviour
 
     private bool playerIsClose = false;
 
+    private InputAction interactAction;
+
     void Awake()
     {
         Instance = this;
@@ -30,6 +32,7 @@ public class Car : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        interactAction = InputSystem.actions.FindAction("interact");
     }
 
     // Update is called once per frame
@@ -67,7 +70,7 @@ public class Car : MonoBehaviour
         }
         if (playerIsClose && keyAcquired)
         {
-            if (Keyboard.current[Key.Space].wasPressedThisFrame)
+            if (interactAction.WasPressedThisFrame())
             {
                 keyAcquired = false;
                 GameManager.main.LoadWorldMap();
