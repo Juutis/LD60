@@ -18,12 +18,9 @@ public class PlayerAttack : MonoBehaviour
     private PlayerMovement movement;
 
     private Attack currentAttack;
-    private float actionStarted;
     private float actionEnded;
 
     private List<AttackType> currentCombo = new();
-
-    private List<AttackType> inputBuffer = new();
 
     private BattleAnimator battleAnim;
 
@@ -62,7 +59,6 @@ public class PlayerAttack : MonoBehaviour
             }
 
             currentAttack = nextAttack;
-            actionStarted = Time.time;
             movement.SlowMoving(true);
             battleAnim.PlayState(currentAttack.AnimState, true);
             isAttacking = true;
