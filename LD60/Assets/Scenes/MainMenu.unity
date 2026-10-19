@@ -1291,6 +1291,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DontDestroyOnLoad
       objectReference: {fileID: 0}
+    - target: {fileID: 6873506953818488773, guid: f0b3476a74183ff4d8073992cc999d67, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
