@@ -111,6 +111,10 @@ public class MusicManager : MonoBehaviour
         {
             currentAudioSource.Pause();
         }
+        if (currentBigAudioSource != null)
+        {
+            currentBigAudioSource.Pause();
+        }
     }
 
     public void IncreaseVolume()
