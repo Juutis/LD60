@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Car : MonoBehaviour
 {
@@ -34,7 +35,10 @@ public class Car : MonoBehaviour
     void Start()
     {
         interactAction = InputSystem.actions.FindAction("interact");
-        
+        if (SceneManager.GetActiveScene().name.Contains("Encounter"))
+        {
+            casetteAcquired = true;
+        }
     }
 
     // Update is called once per frame
