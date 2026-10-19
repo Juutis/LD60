@@ -53,6 +53,12 @@ public class WorldMapPoi : MonoBehaviour
         txtMesh.text = $"- Press [{interactAction.GetBindingDisplayString(0)}] to enter -";
     }
 
+    public void Clear()
+    {
+        visited = true;
+        txtMesh.text = "- Location cleared - ";
+    }
+
     void Update()
     {
         if (visited)
@@ -87,9 +93,10 @@ public class WorldMapPoi : MonoBehaviour
         {
             if (interactAction.WasPressedThisFrame())
             {
-                visited = true;
-                txtMesh.text = "- Location cleared - ";
-                GameManager.main.LoadLevel(level);
+                GameManager.main.LoadLevel(level, delegate
+                {
+                    Clear();
+                });
             }
         }
     }

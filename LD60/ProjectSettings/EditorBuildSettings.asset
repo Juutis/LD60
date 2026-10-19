@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Disco.unity
     guid: 4e13d3d06617e7e4ab954f1fdf16c066
+  - enabled: 1
+    path: Assets/Scenes/Death.unity
+    guid: 6d15b72f046e5244884d799bfb96e0e0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

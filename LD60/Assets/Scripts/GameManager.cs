@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform worldMapContainer;
 
+    private UnityAction afterLevelCleared;
+
     void Awake()
     {
         if (main == null) {
@@ -16,8 +19,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void LoadLevel(LevelConfig level)
+    public void LoadLevel(LevelConfig level, UnityAction afterLevelCleared)
     {
+        this.afterLevelCleared = afterLevelCleared;
         Time.timeScale = 0f;
         worldMapContainer.gameObject.SetActive(false);
         TransitionManager.main.Transition(TransitionType.FadeOut, delegate
@@ -34,6 +38,11 @@ public class GameManager : MonoBehaviour
 
     public void LoadWorldMap()
     {
+        if (afterLevelCleared != null)
+        {
+            afterLevelCleared();
+            afterLevelCleared = null;
+        }
         Time.timeScale = 0f;
         TransitionManager.main.Transition(TransitionType.FadeOut, delegate
             {
@@ -46,6 +55,12 @@ public class GameManager : MonoBehaviour
                 );
             }
         );
+    }
+
+    public void Die()
+    {
+        afterLevelCleared = null;
+        SceneManager.LoadScene("Death");
     }
 
 
