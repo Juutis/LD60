@@ -309,7 +309,6 @@ public class EnemyMovement : MonoBehaviour
         {
             if (col != null && col.TryGetComponent(out Health playerHealth))
             {
-                Debug.Log("Hit!");
                 playerHealth.TakeDamage(1);
             }
         }
@@ -317,7 +316,6 @@ public class EnemyMovement : MonoBehaviour
 
     public void AttackDone()
     {
-        Debug.Log("Attack done");
         lastHit = Time.time;
         hitting = false;
         currentAttackDelay = GetAttackDelay();

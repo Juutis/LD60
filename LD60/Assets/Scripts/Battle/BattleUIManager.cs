@@ -18,6 +18,12 @@ public class BattleUIManager : MonoBehaviour
     [SerializeField]
     private GameObject enemyContainer;
 
+    [SerializeField]
+    private GameObject casetteIconMask;
+
+    [SerializeField]
+    private GameObject keyIconMask;
+
     private float playerHealth = 10f;
     private float playerMaxHealth = 10f;
 
@@ -40,7 +46,8 @@ public class BattleUIManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        casetteIconMask.SetActive(true);
+        keyIconMask.SetActive(true);
     }
 
     // Update is called once per frame
@@ -81,5 +88,15 @@ public class BattleUIManager : MonoBehaviour
     public void UpdateBatteryCounter(int count)
     {
         batteryCounter.text = count.ToString();
+    }
+
+    public void UpdateCasetteAcquired()
+    {
+        casetteIconMask.SetActive(false);
+    }
+
+    public void UpdateKeyAcquired()
+    {
+        keyIconMask.SetActive(false);
     }
 }

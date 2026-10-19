@@ -10,6 +10,7 @@ public class Car : MonoBehaviour
     private TextMeshPro tooltipText;
 
     private bool keyAcquired = false;
+    private bool casetteAcquired = false;
     private PlayerMovement player;
 
     [SerializeField]
@@ -54,13 +55,24 @@ public class Car : MonoBehaviour
             {
                 playerIsClose = true;
                 tooltipText.gameObject.SetActive(true);
-                if (keyAcquired)
+                if (keyAcquired && casetteAcquired)
                 {
                     tooltipText.text = $"- Press [{interactAction.GetBindingDisplayString(0)}] to go to world map -";
                 }
                 else
                 {
-                    tooltipText.text = "- Need to find the key! -";
+                    if (!keyAcquired && !casetteAcquired)
+                    {
+                        tooltipText.text = "- Need to find the key and a casette! -";
+                    }
+                    else if (!casetteAcquired)
+                    {
+                        tooltipText.text = "- Need to find a casette! -";
+                    }
+                    else if (!keyAcquired)
+                    {
+                        tooltipText.text = "- Need to find the key! -";
+                    }
                 }
             }
             else
@@ -69,10 +81,11 @@ public class Car : MonoBehaviour
                 tooltipText.gameObject.SetActive(false);
             }
         }
-        if (playerIsClose && keyAcquired)
+        if (playerIsClose && keyAcquired && casetteAcquired)
         {
             if (interactAction.WasPressedThisFrame())
             {
+                casetteAcquired = false;
                 keyAcquired = false;
                 GameManager.main.LoadWorldMap();
             }
@@ -82,6 +95,11 @@ public class Car : MonoBehaviour
     public void KeyAcquired()
     {
         keyAcquired = true;
+    }
+
+    public void CasetteAcquired()
+    {
+        casetteAcquired = true;
     }
 
 }

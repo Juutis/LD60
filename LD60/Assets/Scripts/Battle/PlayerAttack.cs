@@ -82,12 +82,6 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
 
-            // Debug.DrawLine(transform.position + Vector3.up * 0.5f, transform.position + transform.forward * coef + Vector3.up * 0.5f, Color.violetRed);
-            // Debug.DrawLine(transform.position + Vector3.up * 0.5f, transform.position + transform.forward * coef + Vector3.up * 0.5f + Vector3.right * coef * 0.5f, Color.violetRed);
-            // Debug.DrawLine(transform.position + Vector3.up * 0.5f, transform.position + transform.forward * coef + Vector3.up * 0.5f - Vector3.right * coef * 0.5f, Color.violetRed);
-            // Debug.DrawLine(transform.position + Vector3.up * 0.5f, transform.position + transform.forward * coef + Vector3.up * 0.5f + Vector3.right * coef * 0.25f, Color.violetRed);
-            // Debug.DrawLine(transform.position + Vector3.up * 0.5f, transform.position + transform.forward * coef + Vector3.up * 0.5f - Vector3.right * coef * 0.25f, Color.violetRed);
-
             if (Time.time - ultStarted > ultChargeDuration)
             {
                 isUlting = false;

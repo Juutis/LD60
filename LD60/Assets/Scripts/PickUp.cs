@@ -30,9 +30,12 @@ public class PickUp : MonoBehaviour
         switch(type)
         {
             case PickUpType.CASSETTE:
+                Car.Instance.CasetteAcquired();
+                BattleUIManager.instance.UpdateCasetteAcquired();
                 break;
             case PickUpType.KEY:
                 Car.Instance.KeyAcquired();
+                BattleUIManager.instance.UpdateKeyAcquired();
                 break;
             case PickUpType.BATTERY:
                 break;
